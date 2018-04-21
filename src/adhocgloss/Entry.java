@@ -16,9 +16,9 @@ public class Entry {
     private String def;    //definicja słówka
     private int diff;    //wartość słówka
     private int lastAns;
-    public Date dateReg;    //data dodania słówka
+    private long dateReg;    //data dodania słówka
     
-    public Entry(String word, String definition, int difficulty, int lastA, Date dateReg){
+    public Entry(String word, int difficulty, int lastA, long dateReg, String definition){
         this.word = word;
         this.def = definition;
         this.diff = difficulty;
@@ -50,11 +50,11 @@ public class Entry {
         return diff;
     }
     
-    public void setDateReg(Date dateReg){
+    public void setDateReg(long dateReg){
         this.dateReg=dateReg;
     }
     
-    public Date getDateReg(){            
+    public long getDateReg(){            
         return dateReg;
     }
 
@@ -67,3 +67,11 @@ public class Entry {
     }
     
 }
+
+
+
+
+/*
+Key: Name
+Definition: *dff*la*date*definition
+*/
