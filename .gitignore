@@ -1,0 +1,10 @@
+<<<<<<< HEAD
+/build/
+=======
+# ignore eclipse project files
+.project
+.classpath
+# ignore Intellij Idea project files
+.idea
+*.iml
+>>>>>>> origin/master
