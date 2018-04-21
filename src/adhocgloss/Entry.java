@@ -14,48 +14,71 @@ import java.util.Date;
 public class Entry {
     private String word;
     //słówko
+    
     private String definition;
     //definicja słówka
-    private double difficulty;
+    
+    private int difficulty;
     //wartość słówka
+    
     public Date dateReg;
     //data dodania słówka
-    public static long totalCount;
+    
+    public long totalCount=1200;
     //"Ranking" użytkownika
-    public Entry(String word, String definition, double difficulty){};
+    
+    public int lastAnswer=-2;
+    //Ostatnia odpowiedź na pytanie o słówko (początkowo -2)
+    
+    static public int[] tabLicz={0,0,0,0,0};//[0]<==>-2,[1]<==>-1,[2]<==>0,[3]<==>1,[4]<==>2
+    
+    public Entry(String word, String definition, int difficulty, int lastAnswer)
+    {
+        tabLicz[0]++;
+    };
+    
     public void setPhrase(String word)
     {
         this.word=word;
     }
+    
     public String getPhrase()
     {
         return word;
     }
+    
     public void setDef(String definition)
     {
         this.definition=definition;
     }
+    
     public String getDef()
     {
         return definition;
     }
-    public void setDifficulty(double difficulty)
+    
+    public void setDifficulty(int difficulty)
     {
         this.difficulty=difficulty;
     }
-    public double getDifficulty()
+    
+    public int getDifficulty()
     {
         return difficulty;
     }
-    /*public Date setDateReg(Date dateReg)
+    
+    public void setDateReg(Date dateReg)
     {
         this.dateReg=dateReg;
-        return dateReg;
-    }
-    public Date getDateReg()
-    {
         
     }
-    */
+    
+    public Date getDateReg()
+    {
+        return dateReg;
+    }
+    
+  
+
     
 }
