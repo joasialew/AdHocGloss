@@ -26,7 +26,7 @@ public class AdHocGloss {
      */
     
     public static ArrayList<String> listDir;
-    public static String current = ""; //żadna lista nie jest wybrana
+    private static String current = ""; //żadna lista nie jest wybrana
     
     private static Properties currentList = null;
     
@@ -51,6 +51,22 @@ public class AdHocGloss {
         return currentList.getProperty(key);
     }
     
+    public static Properties getCurrentList(){
+        return currentList;
+    }
+    
+    public static String getCurrent(){
+        return current;
+    }
+    
+    public static boolean setCurrent(String title){
+        if (!listDir.contains(title))
+            return false;
+        current = title;
+        readList(current);
+        return true;
+    }
+    
     public static ArrayList<String> findListsWthKey(String name){        
         int n = listDir.size();
         Properties temp = new Properties();
@@ -66,9 +82,7 @@ public class AdHocGloss {
         return r;
     }
     
-    public static Properties getCurrentList(){
-        return currentList;
-    }
+    
     
     
     

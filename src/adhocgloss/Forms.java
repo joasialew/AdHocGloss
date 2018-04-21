@@ -208,14 +208,30 @@ public class Forms extends javax.swing.JFrame {
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
         int selInd = -1;
+        boolean success = false;
         
         String t = jTextField1.getText();
         boolean isList = jRadioButton1.isSelected();
         if (isList){            
-            displayList(AdHocGloss.listDir.indexOf(t));
+            success = AdHocGloss.setCurrent(t);
+            if (success = AdHocGloss.setCurrent(t)){
+                displayCurrentList();
+            }
+                
         } else{
-            displayLists(AdHocGloss.findListsWthKey(t));
+            ArrayList<String> temp = AdHocGloss.findListsWthKey(t);
+            if (success = !temp.isEmpty()){
+                displayLists(temp);
+            }
         }
+        
+        if (!success){
+            DefaultListModel<String> listModel = new DefaultListModel<>();
+            listModel.addElement("Nie znaleziono szukanego elementu");
+            jList1 = new JList<>(listModel);
+            jList1.setEnabled(false);
+        }
+            
     }//GEN-LAST:event_searchActionPerformed
 
     
@@ -239,10 +255,15 @@ public class Forms extends javax.swing.JFrame {
     void selectList(){
 
     }
+    
+    void selectEntry(){
+        
+    }
 
-    private void displayList(int indexOf) {
+    private void displayCurrentList() {
         DefaultListModel<String> listModel = Translator.getKeysNames(AdHocGloss.current);
-        jList1 = new JList<>(listModel);
+        jList1 = new JList<>(listModel);        
+        jList1.setEnabled(true);
     }
 
 
@@ -252,6 +273,7 @@ public class Forms extends javax.swing.JFrame {
             listModel.addElement(name);
         });
         jList1 = new JList<>(listModel);
+        jList1.setEnabled(true);
     }
 
 
