@@ -21,6 +21,9 @@ import com.sun.jna.Native;
 import com.sun.jna.platform.win32.User32;
 import com.sun.jna.platform.win32.WinDef.HWND;
 import com.sun.jna.win32.StdCallLibrary;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 
 public class ClipGetter implements ClipboardOwner {
     public interface CustomUser32 extends StdCallLibrary {
@@ -35,10 +38,17 @@ public class ClipGetter implements ClipboardOwner {
     }
 
     void controlC(CustomUser32 customUser32) {
-        customUser32.keybd_event((byte) 0x11 /* VK_CONTROL*/, (byte) 0, 0, 0);
-        customUser32.keybd_event((byte) 0x43 /* 'C' */, (byte) 0, 0, 0);
-        customUser32.keybd_event((byte) 0x43 /* 'C' */, (byte) 0, 2 /* KEYEVENTF_KEYUP */, 0);
-        customUser32.keybd_event((byte) 0x11 /* VK_CONTROL*/, (byte) 0, 2 /* KEYEVENTF_KEYUP */, 0);// 'Left Control Up
+        try {
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_C);
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            
+            robot.keyRelease(KeyEvent.VK_C);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
     }
 
     String getClipboardText() throws Exception {
@@ -65,9 +75,4 @@ public class ClipGetter implements ClipboardOwner {
         return text;
     }
 
-    /*public static void main(String[] args) throws Exception {
-    Foo foo = new Foo();
-    Thread.sleep(2000); // take some time for you to select something anywhere
-    System.out.println(foo.getSelectedText(User32.INSTANCE, CustomUser32.INSTANCE));
-    }*/
 }
