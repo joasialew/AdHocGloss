@@ -26,7 +26,7 @@ public class AdHocGloss {
      */
     
     public static ArrayList<String> listDir;
-    private static int index = -1; //żadna lista nie jest wybrana
+    public static String current = ""; //żadna lista nie jest wybrana
     
     private static Properties currentList = null;
     
@@ -38,7 +38,7 @@ public class AdHocGloss {
     }
     
     
-    void pair(String name, String def){
+    public void pair(String name, String def){
         currentList.put(name, def);
         saveCurrentList();
     }
@@ -50,7 +50,6 @@ public class AdHocGloss {
     public String getValue(String key){
         return currentList.getProperty(key);
     }
-    
     
     public static ArrayList<String> findListsWthKey(String name){        
         int n = listDir.size();
@@ -67,20 +66,15 @@ public class AdHocGloss {
         return r;
     }
     
-    
+    public static Properties getCurrentList(){
+        return currentList;
+    }
     
     
     
     public static void readLists(){
         File folder = new File("Listy");
         File[] listOfFiles = folder.listFiles();
-        
-        if (listOfFiles == null){
-            listDir = new ArrayList<>();
-            listDir.add("Default");
-            saveCurrentList();
-            return;
-        }
                 
         String extension = "";
         String fileName = "";
@@ -100,9 +94,13 @@ public class AdHocGloss {
                 }
             }
         }
-        index = 0;
-    }
-    
+        if (listDir.isEmpty()){           
+            listDir = new ArrayList<>();
+            listDir.add("Default");
+            saveCurrentList();
+            current = "Default";
+        }
+}
     
     public static Properties readList(String title){
         Properties prop = new Properties();
@@ -126,7 +124,7 @@ public class AdHocGloss {
     public static void saveCurrentList(){
         FileOutputStream out;
         try {
-            out = new FileOutputStream(listDir.get(index));
+            out = new FileOutputStream(current);
             currentList.store(out, "AdHocGlossary");
             out.close();
         } catch (FileNotFoundException ex) {

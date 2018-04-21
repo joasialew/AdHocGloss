@@ -5,9 +5,12 @@
  */
 package adhocgloss;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import javax.swing.DefaultListModel;
 
 
 /**
@@ -38,12 +41,18 @@ public class Translator{
     private static long decodeDate(String value){
         int i = value.indexOf('#');
         return Long.parseLong(value.substring(2,i-1));
-    }
-        
+    }        
     
     public static String encode(Entry en){
         String def = String.valueOf(en.getDifficulty()) + String.valueOf(en.getLastAns()) + String.valueOf(en.getDateReg()) + "#" + en.getDef();
         return def;
+    }
+    
+    
+    public static DefaultListModel<String> getKeysNames(String title){
+        DefaultListModel<String> listKeys = new DefaultListModel<>();
+        AdHocGloss.getCurrentList().forEach((key, value) -> listKeys.addElement((String) key));        
+        return listKeys;
     }
     
     

@@ -12,7 +12,8 @@ import javax.swing.*;
 
 
 public class Forms extends javax.swing.JFrame {
-
+    
+    
     
     int selectedList = -1;
 
@@ -240,12 +241,10 @@ public class Forms extends javax.swing.JFrame {
     }
 
     private void displayList(int indexOf) {
-
+        DefaultListModel<String> listModel = Translator.getKeysNames(AdHocGloss.current);
+        jList1 = new JList<>(listModel);
     }
 
-    private void displayEntries(){
-        
-    }
 
     private void displayLists(ArrayList<String> li){
         DefaultListModel<String> listModel = new DefaultListModel<>(); 
