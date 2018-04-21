@@ -12,50 +12,47 @@ import java.util.Date;
  * @author dell
  */
 public class Entry {
-    private String word;
-    //słówko
-    private String definition;
-    //definicja słówka
-    private double difficulty;
-    //wartość słówka
-    public Date dateReg;
-    //data dodania słówka
-    public static long totalCount;
-    //"Ranking" użytkownika
-    public Entry(String word, String definition, double difficulty){};
-    public void setPhrase(String word)
-    {
+    private String word;   //słówko
+    private String definition;    //definicja słówka
+    private int difficulty;    //wartość słówka
+    public Date dateReg;    //data dodania słówka
+    public static long totalCount;    //"Ranking" użytkownika
+    
+    public Entry(String word, String definition, double difficulty){
+        
+    };
+    
+    public void setPhrase(String word){
         this.word=word;
     }
-    public String getPhrase()
-    {
+    
+    public String getPhrase(){
         return word;
     }
-    public void setDef(String definition)
-    {
+    
+    public void setDef(String definition){
         this.definition=definition;
     }
-    public String getDef()
-    {
+    
+    public String getDef(){
         return definition;
     }
-    public void setDifficulty(double difficulty)
-    {
+    
+    public void setDifficulty(int difficulty){
         this.difficulty=difficulty;
     }
-    public double getDifficulty()
-    {
+    
+    public int getDifficulty(){
         return difficulty;
     }
-    /*public Date setDateReg(Date dateReg)
-    {
+    
+    public void setDateReg(Date dateReg){
         this.dateReg=dateReg;
+    }
+    
+    public Date getDateReg(){            
         return dateReg;
     }
-    public Date getDateReg()
-    {
-        
-    }
-    */
+
     
 }
