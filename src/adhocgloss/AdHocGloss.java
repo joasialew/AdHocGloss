@@ -29,7 +29,7 @@ public class AdHocGloss {
     static ArrayList<String> listDir;
     private int index = -1; //żadna lista nie jest wybrana
     
-    private TreeMap currentList = null;
+    private Properties currentList = null;
     
     
     public static void main(String[] args) {
@@ -84,19 +84,16 @@ public class AdHocGloss {
     }
     
     static void saveCurrentList(){
-        /*
-        Properties temp = new Properties();
-        try {
+        /*try {
             FileOutputStream out = new FileOutputStream(listDir.get(index));
-            temp.store(out, "Ad Hoc Glossary");
+            currentList.store(out, "Ad Hoc Glossary");
             out.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
-        currentList = new TreeMap(temp);*/
     }
     
     
