@@ -19,4 +19,15 @@ public class AdHocGloss {
         tg.start();
     }
     
+    void readList(String name){
+        
+    }
+    
+    void saveList(String name){
+        
+    }
+    
+    
+    
+    
 }
