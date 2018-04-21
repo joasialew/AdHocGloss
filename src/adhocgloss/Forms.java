@@ -274,8 +274,7 @@ public class Forms extends javax.swing.JFrame {
     }
 
     private void displayEntries(){
-
-
+        
     }
 
     private void displayLists(ArrayList<String> li){
