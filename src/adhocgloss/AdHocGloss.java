@@ -7,7 +7,7 @@ package adhocgloss;
 
 /**
  *
- * @author User
+ * @author dell
  */
 public class AdHocGloss {
 
