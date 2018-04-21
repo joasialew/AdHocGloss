@@ -11,9 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Properties;
-import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,7 +25,7 @@ public class AdHocGloss {
      * @param args the command line arguments
      */
     
-    static ArrayList<String> listDir;
+    public static ArrayList<String> listDir;
     private static int index = -1; //żadna lista nie jest wybrana
     
     private static Properties currentList = null;
@@ -44,6 +42,34 @@ public class AdHocGloss {
         currentList.put(name, def);
         saveCurrentList();
     }
+    
+    public boolean isKey(String key){
+        return currentList.containsKey(key);
+    }
+    
+    public String getValue(String key){
+        return currentList.getProperty(key);
+    }
+    
+    
+    public static ArrayList<String> findListsWthKey(String name){        
+        int n = listDir.size();
+        Properties temp = new Properties();
+        ArrayList<String> r = new ArrayList<>();
+        String title;
+        for (int i = 0; i < n; i++){
+            title = listDir.get(i);
+            temp = readList(title);
+            if (temp.containsKey(name)){
+                r.add(title);
+            }              
+        }
+        return r;
+    }
+    
+    
+    
+    
     
     public static void readLists(){
         File folder = new File("Listy");
@@ -78,13 +104,13 @@ public class AdHocGloss {
     }
     
     
-    public static void readCurrentList(){
-        currentList = new Properties();
+    public static Properties readList(String title){
+        Properties prop = new Properties();
         
         FileInputStream in;
         try {
-            in = new FileInputStream(listDir.get(index));
-            currentList.load(in);        
+            in = new FileInputStream(title);
+            prop.load(in);        
             in.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,8 +118,9 @@ public class AdHocGloss {
         } catch (IOException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Problem z czytaniem pliku!");
-            currentList = new Properties();
+            prop = new Properties();
         }        
+        return prop;
     }
     
     public static void saveCurrentList(){
@@ -108,8 +135,7 @@ public class AdHocGloss {
         } catch (IOException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);           
             System.out.println("Problem z zapisywaniem pliku!");
-        }
-        
+        }        
         
     }
     

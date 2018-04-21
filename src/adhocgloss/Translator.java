@@ -39,13 +39,13 @@ public class Translator{
         int i = value.indexOf('#');
         return Long.parseLong(value.substring(2,i-1));
     }
-    
-    
+        
     
     public static String encode(Entry en){
         String def = String.valueOf(en.getDifficulty()) + String.valueOf(en.getLastAns()) + String.valueOf(en.getDateReg()) + "#" + en.getDef();
         return def;
     }
+    
     
     public static <K, V extends Comparable<V>> Map<K, V> sortByDiff(final Map<K, V> map) {
         Comparator<K> valueComparator = new Comparator<K>() {
