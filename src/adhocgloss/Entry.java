@@ -23,28 +23,25 @@ public class Entry {
     public static long totalCount;
     //"Ranking" użytkownika
     public Entry(String word, String definition, double difficulty){};
-    public String setPhrase(String word)
+    public void setPhrase(String word)
     {
         this.word=word;
-        return word;
     }
     public String getPhrase()
     {
         return word;
     }
-    public String setDef(String definition)
+    public void setDef(String definition)
     {
         this.definition=definition;
-        return definition;
     }
     public String getDef()
     {
         return definition;
     }
-    public double setDifficulty(double difficulty)
+    public void setDifficulty(double difficulty)
     {
         this.difficulty=difficulty;
-        return difficulty;
     }
     public double getDifficulty()
     {
