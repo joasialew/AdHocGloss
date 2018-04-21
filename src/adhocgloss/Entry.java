@@ -35,19 +35,19 @@ public class Entry {
     }
     
     public void setDef(String definition){
-        this.definition=definition;
+        this.def=definition;
     }
     
     public String getDef(){
-        return definition;
+        return def;
     }
     
     public void setDifficulty(int difficulty){
-        this.difficulty=difficulty; 
+        this.diff=difficulty; 
     }
     
     public int getDifficulty(){
-        return difficulty;
+        return diff;
     }
     
     public void setDateReg(Date dateReg){
