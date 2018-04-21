@@ -60,6 +60,7 @@ public class EditDisp extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(670, 505));
         setMinimumSize(new java.awt.Dimension(670, 505));
         setPreferredSize(new java.awt.Dimension(650, 502));
+        setResizable(false);
         setSize(new java.awt.Dimension(670, 505));
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jLabel4, org.jdesktop.beansbinding.ObjectProperty.create(), this, org.jdesktop.beansbinding.BeanProperty.create("minimumSize"));
