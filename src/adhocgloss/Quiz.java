@@ -1,7 +1,4 @@
 
-package adhocgloss;
-
-
 import java.awt.Toolkit;
 
 
@@ -33,6 +30,7 @@ public class Quiz extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -62,6 +60,11 @@ public class Quiz extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton5);
         jRadioButton5.setText("5");
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButton5);
         jRadioButton5.setBounds(401, 330, 35, 25);
 
@@ -80,15 +83,23 @@ public class Quiz extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(340, 110, 300, 108);
+        jScrollPane1.setBounds(40, 50, 300, 120);
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel4.setText("Wynik:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(400, 20, 42, 17);
+        jLabel4.setBounds(400, 20, 60, 22);
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(480, 20, 0, 0);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     
     public static void main(String args[]) {
@@ -104,6 +115,7 @@ public class Quiz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
