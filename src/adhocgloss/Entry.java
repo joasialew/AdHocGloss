@@ -13,14 +13,18 @@ import java.util.Date;
  */
 public class Entry {
     private String word;   //słówko
-    private String definition;    //definicja słówka
-    private int difficulty;    //wartość słówka
+    private String def;    //definicja słówka
+    private int diff;    //wartość słówka
+    private int lastAns;
     public Date dateReg;    //data dodania słówka
-    public static long totalCount;    //"Ranking" użytkownika
     
-    public Entry(String word, String definition, double difficulty){
-        
-    };
+    public Entry(String word, String definition, int difficulty, int lastA, Date dateReg){
+        this.word = word;
+        this.def = definition;
+        this.diff = difficulty;
+        this.lastAns = lastA;
+        this.dateReg = dateReg;     
+    }
     
     public void setPhrase(String word){
         this.word=word;
@@ -54,5 +58,12 @@ public class Entry {
         return dateReg;
     }
 
+    public void setLastAns(int la){
+        this.lastAns = la;
+    }
+    
+    public int getLastAns(){
+        return this.lastAns;
+    }
     
 }
