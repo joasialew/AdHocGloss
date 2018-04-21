@@ -39,7 +39,7 @@ public class Entry {
     }
     
     public void setDifficulty(int difficulty){
-        this.difficulty=difficulty;
+        this.difficulty=difficulty; 
     }
     
     public int getDifficulty(){
