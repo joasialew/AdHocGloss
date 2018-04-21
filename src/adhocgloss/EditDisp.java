@@ -1,4 +1,5 @@
 
+package adhocgloss;
 import java.awt.Toolkit;
 
 
@@ -52,35 +53,38 @@ public class EditDisp extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
-        setFocusCycleRoot(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ad Hoc Gloss");
+        setBounds(new java.awt.Rectangle(0, 0, 649, 502));
         setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        setMaximumSize(new java.awt.Dimension(650, 502));
+        setMaximumSize(new java.awt.Dimension(670, 505));
+        setMinimumSize(new java.awt.Dimension(670, 505));
+        setPreferredSize(new java.awt.Dimension(650, 502));
+        setSize(new java.awt.Dimension(670, 505));
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jLabel4, org.jdesktop.beansbinding.ObjectProperty.create(), this, org.jdesktop.beansbinding.BeanProperty.create("minimumSize"));
         bindingGroup.addBinding(binding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jLabel4, org.jdesktop.beansbinding.ObjectProperty.create(), this, org.jdesktop.beansbinding.BeanProperty.create("preferredSize"));
-        bindingGroup.addBinding(binding);
 
-        setLayout(null);
+        getContentPane().setLayout(null);
 
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox1);
+        getContentPane().add(jComboBox1);
         jComboBox1.setBounds(103, 23, 534, 23);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setText("Lista:");
-        add(jLabel1);
+        getContentPane().add(jLabel1);
         jLabel1.setBounds(42, 22, 43, 22);
 
         jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextField1.setText("Podaj hasło...");
-        add(jTextField1);
+        getContentPane().add(jTextField1);
         jTextField1.setBounds(42, 77, 595, 23);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("Stopień trudności:");
-        add(jLabel2);
+        getContentPane().add(jLabel2);
         jLabel2.setBounds(42, 122, 144, 22);
 
         buttonGroup1.add(jRadioButton1);
@@ -91,67 +95,63 @@ public class EditDisp extends javax.swing.JFrame {
                 jRadioButton1ActionPerformed(evt);
             }
         });
-        add(jRadioButton1);
+        getContentPane().add(jRadioButton1);
         jRadioButton1.setBounds(258, 118, 39, 31);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jRadioButton2.setText("2");
-        add(jRadioButton2);
+        getContentPane().add(jRadioButton2);
         jRadioButton2.setBounds(315, 118, 39, 31);
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jRadioButton3.setText("5");
-        add(jRadioButton3);
+        getContentPane().add(jRadioButton3);
         jRadioButton3.setBounds(486, 118, 39, 31);
 
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jRadioButton4.setText("4");
-        add(jRadioButton4);
+        getContentPane().add(jRadioButton4);
         jRadioButton4.setBounds(429, 118, 39, 31);
 
         buttonGroup1.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jRadioButton5.setText("3");
-        add(jRadioButton5);
+        getContentPane().add(jRadioButton5);
         jRadioButton5.setBounds(372, 118, 39, 31);
 
         jTextPane1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(jTextPane1);
 
-        add(jScrollPane1);
-        jScrollPane1.setBounds(42, 209, 595, 237);
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(30, 210, 595, 237);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("Definicja:");
-        add(jLabel3);
+        getContentPane().add(jLabel3);
         jLabel3.setBounds(42, 169, 74, 22);
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton1.setText("Anuluj");
-        add(jButton1);
+        getContentPane().add(jButton1);
         jButton1.setBounds(541, 464, 73, 25);
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setText("Zapisz");
-        add(jButton2);
+        getContentPane().add(jButton2);
         jButton2.setBounds(456, 464, 73, 25);
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton3.setText("Edytuj");
-        add(jButton3);
+        getContentPane().add(jButton3);
         jButton3.setBounds(371, 464, 73, 25);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back1.png"))); // NOI18N
         jLabel4.setText("jLabel4");
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jLabel4, org.jdesktop.beansbinding.ELProperty.create("${}"), jLabel4, org.jdesktop.beansbinding.BeanProperty.create("background"));
-        bindingGroup.addBinding(binding);
-
-        add(jLabel4);
-        jLabel4.setBounds(-20, 0, 690, 510);
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 650, 500);
 
         bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents

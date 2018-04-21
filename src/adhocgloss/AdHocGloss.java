@@ -34,6 +34,9 @@ public class AdHocGloss {
     
     
     public static void main(String[] args) {
+        
+        EditDisp b = new EditDisp();
+        b.setVisible(true);
         readLists();
         Thread tg = new Thread(new GetterThread());
         tg.start();        
