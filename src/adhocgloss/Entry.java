@@ -5,7 +5,6 @@
  */
 package adhocgloss;
 
-import java.util.Date;
 
 /**
  *
