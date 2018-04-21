@@ -6,6 +6,7 @@
 package adhocgloss;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,16 +28,15 @@ public class AdHocGloss {
      */
     
     static ArrayList<String> listDir;
-    private int index = -1; //żadna lista nie jest wybrana
+    private static int index = -1; //żadna lista nie jest wybrana
     
-    private Properties currentList = null;
+    private static Properties currentList = null;
     
     
     public static void main(String[] args) {
         readLists();
         Thread tg = new Thread(new GetterThread());
-        tg.start();
-        
+        tg.start();        
     }
     
     
@@ -45,7 +45,7 @@ public class AdHocGloss {
         saveCurrentList();
     }
     
-    static void readLists(){
+    public static void readLists(){
         File folder = new File("Listy");
         File[] listOfFiles = folder.listFiles();
         
@@ -55,8 +55,7 @@ public class AdHocGloss {
             saveCurrentList();
             return;
         }
-        
-        
+                
         String extension = "";
         String fileName = "";
              
@@ -75,24 +74,42 @@ public class AdHocGloss {
                 }
             }
         }
-        
+        index = 0;
     }
     
     
-    void readCurrentList(){
+    public static void readCurrentList(){
+        currentList = new Properties();
         
-    }
-    
-    static void saveCurrentList(){
-        /*try {
-            FileOutputStream out = new FileOutputStream(listDir.get(index));
-            currentList.store(out, "Ad Hoc Glossary");
-            out.close();
+        FileInputStream in;
+        try {
+            in = new FileInputStream(listDir.get(index));
+            currentList.load(in);        
+            in.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Nie znaleziono pliku!");
         } catch (IOException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+            System.out.println("Problem z czytaniem pliku!");
+            currentList = new Properties();
+        }        
+    }
+    
+    public static void saveCurrentList(){
+        FileOutputStream out;
+        try {
+            out = new FileOutputStream(listDir.get(index));
+            currentList.store(out, "AdHocGlossary");
+            out.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);            
+            System.out.println("Nie znaleziono pliku!");
+        } catch (IOException ex) {
+            Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);           
+            System.out.println("Problem z zapisywaniem pliku!");
+        }
+        
         
     }
     
