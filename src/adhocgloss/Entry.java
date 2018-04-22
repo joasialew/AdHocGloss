@@ -25,11 +25,11 @@ public class Entry {
         this.dateReg = dateReg;     
     }
     
-    public void setPhrase(String word){
+    public void setName(String word){
         this.word=word;
     }
     
-    public String getPhrase(){
+    public String getName(){
         return word;
     }
     

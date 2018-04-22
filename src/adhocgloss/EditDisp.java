@@ -1,4 +1,5 @@
 
+package adhocgloss;
 import java.awt.Toolkit;
 
 
@@ -18,6 +19,10 @@ public class EditDisp extends javax.swing.JFrame {
     /**
      * Creates new form EditDisp
      */
+    
+    Entry entry;
+    
+    
     public EditDisp() {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
@@ -32,7 +37,6 @@ public class EditDisp extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -41,142 +45,193 @@ public class EditDisp extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        save = new javax.swing.JButton();
+        edit = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ad Hoc Gloss");
+        setBounds(new java.awt.Rectangle(0, 0, 660, 510));
         setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        setMaximumSize(new java.awt.Dimension(650, 502));
-        setPreferredSize(new java.awt.Dimension(650, 502));
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jLabel4, org.jdesktop.beansbinding.ObjectProperty.create(), this, org.jdesktop.beansbinding.BeanProperty.create("minimumSize"));
-        bindingGroup.addBinding(binding);
-
+        setMaximumSize(new java.awt.Dimension(660, 520));
+        setMinimumSize(new java.awt.Dimension(660, 520));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(660, 520));
+        setResizable(false);
+        setSize(new java.awt.Dimension(660, 520));
         getContentPane().setLayout(null);
 
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setEnabled(false);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(100, 20, 534, 30);
+        jComboBox1.setBounds(80, 20, 530, 40);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setText("Lista:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(42, 22, 43, 22);
+        jLabel1.setBounds(30, 30, 43, 22);
 
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTextField1.setText("Podaj hasło...");
+        jTextField1.setEnabled(false);
+        jTextField1.setMargin(new java.awt.Insets(2, 15, 2, 15));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(40, 60, 595, 40);
+        jTextField1.setBounds(30, 80, 580, 40);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("Stopień trudności:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(42, 122, 144, 22);
+        jLabel2.setBounds(40, 130, 144, 22);
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jRadioButton1.setText("1");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
+        jRadioButton1.setEnabled(false);
+        jRadioButton1.setOpaque(false);
         getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(258, 118, 39, 31);
+        jRadioButton1.setBounds(260, 130, 39, 31);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jRadioButton2.setText("2");
+        jRadioButton2.setEnabled(false);
+        jRadioButton2.setOpaque(false);
         getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(315, 118, 39, 31);
+        jRadioButton2.setBounds(320, 130, 39, 31);
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jRadioButton3.setText("5");
-        getContentPane().add(jRadioButton3);
-        jRadioButton3.setBounds(486, 118, 39, 31);
+        buttonGroup1.add(jRadioButton5);
+        jRadioButton5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jRadioButton5.setText("5");
+        jRadioButton5.setEnabled(false);
+        jRadioButton5.setOpaque(false);
+        getContentPane().add(jRadioButton5);
+        jRadioButton5.setBounds(490, 130, 39, 31);
 
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jRadioButton4.setText("4");
+        jRadioButton4.setEnabled(false);
+        jRadioButton4.setOpaque(false);
         getContentPane().add(jRadioButton4);
-        jRadioButton4.setBounds(429, 118, 39, 31);
+        jRadioButton4.setBounds(430, 130, 39, 31);
 
-        buttonGroup1.add(jRadioButton5);
-        jRadioButton5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jRadioButton5.setText("3");
-        getContentPane().add(jRadioButton5);
-        jRadioButton5.setBounds(372, 118, 39, 31);
+        buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jRadioButton3.setText("3");
+        jRadioButton3.setEnabled(false);
+        jRadioButton3.setOpaque(false);
+        getContentPane().add(jRadioButton3);
+        jRadioButton3.setBounds(370, 130, 39, 31);
 
-        jTextPane1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextPane1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTextPane1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        jTextPane1.setEnabled(false);
+        jTextPane1.setMargin(new java.awt.Insets(15, 15, 15, 15));
         jScrollPane1.setViewportView(jTextPane1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(40, 190, 595, 260);
+        jScrollPane1.setBounds(30, 200, 580, 240);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("Definicja:");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(42, 169, 74, 22);
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setText("Anuluj");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(541, 464, 73, 25);
-
-        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton2.setText("Zapisz");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        delete.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        delete.setText("USUŃ");
+        delete.setEnabled(false);
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(456, 464, 73, 25);
+        getContentPane().add(delete);
+        delete.setBounds(503, 450, 100, 40);
 
-        jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton3.setText("Edytuj");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(371, 464, 73, 25);
+        save.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        save.setText("ZAPISZ");
+        save.setEnabled(false);
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
+        getContentPane().add(save);
+        save.setBounds(390, 450, 100, 40);
+
+        edit.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        edit.setText("EDYTUJ");
+        edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editActionPerformed(evt);
+            }
+        });
+        getContentPane().add(edit);
+        edit.setBounds(270, 450, 110, 40);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back1.png"))); // NOI18N
         jLabel4.setText("jLabel4");
-        jLabel4.setOpaque(true);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jLabel4, org.jdesktop.beansbinding.ELProperty.create("${}"), jLabel4, org.jdesktop.beansbinding.BeanProperty.create("background"));
-        bindingGroup.addBinding(binding);
-
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(-20, 0, 730, 530);
-
-        bindingGroup.bind();
+        jLabel4.setBounds(0, 0, 650, 510);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        AdHocGloss.delete(entry.getName());
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
+        // TODO add your handling code here:
+        delete.setEnabled(true);
+        save.setEnabled(true);
+        jTextField1.setEnabled(true);
+        jTextPane1.setEnabled(true);
+        jRadioButton1.setEnabled(true);
+        jRadioButton2.setEnabled(true);
+        jRadioButton3.setEnabled(true);
+        jRadioButton4.setEnabled(true);
+        jRadioButton5.setEnabled(true);
+    }//GEN-LAST:event_editActionPerformed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton delete;
+    private javax.swing.JButton edit;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -190,7 +245,7 @@ public class EditDisp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+    private javax.swing.JButton save;
     // End of variables declaration//GEN-END:variables
 
     
@@ -200,5 +255,11 @@ public class EditDisp extends javax.swing.JFrame {
             new EditDisp().setVisible(true);
         });
     }
+    
+    
+    
+    
 
 }
+
+

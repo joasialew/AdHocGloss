@@ -33,8 +33,10 @@ public class AdHocGloss {
     
     public static void main(String[] args) {
         readLists();
+        
         Thread tg = new Thread(new GetterThread());
-        tg.start();        
+        tg.start();
+        new Forms().setVisible(true);
     }
     
     
@@ -82,11 +84,13 @@ public class AdHocGloss {
         return r;
     }
     
-    
-    
+    public static void delete(String key){
+        currentList.remove(key);
+    }
     
     
     public static void readLists(){
+        listDir = new ArrayList<String>();
         File folder = new File("Listy");
         File[] listOfFiles = folder.listFiles();
                 
