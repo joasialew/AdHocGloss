@@ -1,0 +1,16 @@
+#AdHocGlossary
+#Sun Apr 22 11:25:50 CEST 2018
+obrona\ Wizny=501524389109910\#bitwa, kt\u00F3ra rozegra\u0142a si\u0119 w dniach 7-10 wrze\u015Bnia 1939r. pod dow\u00F3ztwem kapitana W\u0142adys\u0142awa Raginisa, zwana Polskimi Termopilami ze wzgl\u0119du na kolosaln\u0105 dysproporcj\u0119 si\u0142
+mumbo-jumbo=201524389116301\#(ang.) be\u0142kot, banialuki, skomplikowany j\u0119zyk
+Henryk\ Walezy=401524389134569\#pierwszy kr\u00F3l ekelcyjny Polski, sprawowa\u0142 w\u0142adz\u0119 w latach \r\n1573-1574 , uciek\u0142 z kraju, gdy sta\u0142 si\u0119 pretendentem do tronu francuskiego
+Baza=101524387507865\#zbi\u00F3r wektor\u00F3w liniowo niezale\u017Cnych rozpinaj\u0105cych dan\u0105 przestrze\u0144 V
+Morze\ Kaspijskie=301524389150046\#morze, kt\u00F3re w rzeczywisto\u015Bci jest jeziorem
+Jeziorak=301524388332718\#najd\u0142u\u017Csze i sz\u00F3ste do do wielko\u015Bci jezioro w Polsce
+triathlon=301524387024621\#dyscyplina sportowa obejmuj\u0105ca p\u0142ywanie, jazd\u0119 rowerem i bieg
+bitwa\ pod\ Grunwaldem=201524386813824\#S\u0142ynna bitwa polsko-kr\u017Cy\u017Cacka, kt\u00F3ra odby\u0142a si\u0119 15 lipca 1410 roku i zako\u0144czy\u0142a si\u0119 zwyci\u0119stwem Polak\u00F3w.
+Jan\ Matejko=101524387944130\#Polski malarz, jego najbardziej znane dzie\u0142a to m. in. "Sta\u0144czyk", "Bitwa pod Grunwaldem"
+uncountable=101524386843811\#nieprzeliczalny
+infinitezymalny=401524386530644\#w\u0142asno\u015B\u0107 bardzo ma\u0142a (niesko\u0144czenie ma\u0142a)
+Metryka=201524387609672\#funkcja d\: X x X --> [0,+inf), dla kt\u00F3rej zachodzi\:\r\n- identyczno\u015B\u0107 element\u00F3w nierozr\u00F3\u017Cnialnych\r\n- symetria\r\n- nier\u00F3wno\u015B\u0107 tr\u00F3jk\u0105ta
+tulipan=101524386488733\#Kwiat bardzo popularny w Polsce, szczeg\u00F3lnie 8 marca, chodowane na du\u017C\u0105 skal\u0119 w Holandii.
+chlorofil=401524386964293\#Grupa organicznych zwi\u0105zk\u00F3w chemicznych obecnych mi\u0119dzy innymi w ro\u015Blinach, algach i bakteriach fotosyntezuj\u0105cych.

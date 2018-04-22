@@ -1,0 +1,3 @@
+#AdHocGlossary
+#Sun Apr 22 09:10:32 CEST 2018
+alibaba=4901524381032577\#kot

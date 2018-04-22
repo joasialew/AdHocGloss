@@ -5,57 +5,82 @@
  */
 package adhocgloss;
 
-import java.util.Date;
 
 /**
  *
  * @author dell
  */
 public class Entry {
-    private String word;
-    //słówko
-    private String definition;
-    //definicja słówka
-    private double difficulty;
-    //wartość słówka
-    public Date dateReg;
-    //data dodania słówka
-    public static long totalCount;
-    //"Ranking" użytkownika
-    public Entry(String word, String definition, double difficulty){};
-    public void setPhrase(String word)
-    {
+    private String word;   //słówko
+    private String def;    //definicja słówka
+    private int diff;    //wartość słówka
+    private int lastAns;
+    private long dateReg;    //data dodania słówka
+    
+    
+    
+    public Entry(){
+        this.word = "";
+        this.def = "";
+        this.diff = 3;
+        this.lastAns = 0;
+        this.dateReg = 0;     
+    }
+    
+    public Entry(String word, int difficulty, int lastA, long dateReg, String definition){
+        this.word = word;
+        this.def = definition;
+        this.diff = difficulty;
+        this.lastAns = lastA;
+        this.dateReg = dateReg;     
+    }
+    
+    public void setName(String word){
         this.word=word;
     }
-    public String getPhrase()
-    {
+    
+    public String getName(){
         return word;
     }
-    public void setDef(String definition)
-    {
-        this.definition=definition;
+    
+    public void setDef(String definition){
+        this.def=definition;
     }
-    public String getDef()
-    {
-        return definition;
+    
+    public String getDef(){
+        return def;
     }
-    public void setDifficulty(double difficulty)
-    {
-        this.difficulty=difficulty;
+    
+    public void setDiff(int difficulty){
+        this.diff=difficulty; 
     }
-    public double getDifficulty()
-    {
-        return difficulty;
+    
+    public int getDiff(){
+        return diff;
     }
-    /*public Date setDateReg(Date dateReg)
-    {
+    
+    public void setDateReg(long dateReg){
         this.dateReg=dateReg;
+    }
+    
+    public long getDateReg(){            
         return dateReg;
     }
-    public Date getDateReg()
-    {
-        
+
+    public void setLastAns(int la){
+        this.lastAns = la;
     }
-    */
+    
+    public int getLastAns(){
+        return this.lastAns;
+    }
     
 }
+
+
+
+
+/*
+Key: Name
+Definition: *dff*la*date*definition
+*/
