@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
+import java.util.Stack;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,9 @@ public class Quiz extends javax.swing.JFrame {
     long userScore = 0;
     long totalScore = 0;
     long questionCount = 0;
+    static final int ITER_MAX = 200;
+    int iter = 0;
+    Stack<String> keys;
     
     
     public Quiz() {     
@@ -34,13 +38,14 @@ public class Quiz extends javax.swing.JFrame {
         Q = AdHocGloss.getCurrentKeys();
         N = Q.length;
         assertQ();
+        keys = shuffleToStack(Q);
         nextQuestion();
       
         
     }
     
     void assertQ(){
-        if (Q.length < 1){
+        if (N < 1){
             keyDisplay.setText("Brak haseł w quizie!!!!");
             for (int i = 3; i >= 0; i--){
                 showAnswer.setText("Zamknięcie za "+ i +"....");
@@ -55,13 +60,23 @@ public class Quiz extends javax.swing.JFrame {
         }
     }
     
-    public int generateRandomAnswer()
+    
+    private int recursiveAnswerGenerator(){
+        int it = 0;
+        return generateRandomAnswer(it);
+    }
+    
+    
+    public int generateRandomAnswer(int it)
     {
         Random r = new Random();
         int RandAns = (((r.nextInt(30))%9)%7)%5-2;
+        if (it == ITER_MAX)
+            return 0;
         if(tabLicz[RandAns+2]!=0)
         {
-            generateRandomAnswer();
+            it++;
+            generateRandomAnswer(it);
         }
         return RandAns;        
     }
@@ -86,14 +101,30 @@ public class Quiz extends javax.swing.JFrame {
         return Q[0];       
     }
     
+    private static Stack<String> shuffleToStack(String[] array){
+        int index;
+        String temp;
+        Stack<String> r = new Stack<>();
+        Random random = new Random();
+        for (int i = array.length - 1; i > 0; i--)        {
+            index = random.nextInt(i + 1);
+            temp = array[index];
+            r.push(array[i]);
+            array[i] = temp;
+        }
+        for (int i = 0; i < array.length; i++)
+            r.push(array[i]);
+        return r;
+    }
+    
        
     
     public int changeTotalCount()
     {   
         tabLicz[entry.getLastAns()+2]--;
-        tabLicz[ans+2]++;
-        entry.setLastAns(ans);
-        int r = rank + 2*(ans-3) + entry.getDiff()-1; 
+        tabLicz[ans-1]++;
+        entry.setLastAns(ans-3);
+        int r = rank + 2*((ans-3) % 5 -1) + entry.getDiff()-1; 
         return r;
     }
     
@@ -108,8 +139,9 @@ public class Quiz extends javax.swing.JFrame {
         questionCount++;
         jLabel4.setText("Rank: " + rank + "       Pytanie: "+ questionCount+"/" + N);
         
-        int a = generateRandomAnswer();
-        String k = generateRandomWord(a);
+        //int a = recursiveAnswerGenerator();
+        //String k = generateRandomWord(a);
+        String k = keys.pop();
         entry = Translator.decode(k);
         keyDisplay.setText(k);
         hideAnswer();
@@ -278,7 +310,7 @@ public class Quiz extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-        if (N > questionCount)
+        if (N > questionCount || !keys.empty())
             nextQuestion();
         else
             endQuiz();
