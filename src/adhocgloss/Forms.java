@@ -241,25 +241,19 @@ public class Forms extends javax.swing.JFrame {
     private javax.swing.JButton quiz;
     private javax.swing.JButton searchButton;
     // End of variables declaration//GEN-END:variables
-
-    
-    
-    
-    
-    
-    
-    
+  
     
     
     
     
     void selectEntry(){
-        
+        new EditDisp().setVisible(true);
     }
 
     private void displayCurrentList() {
-        DefaultListModel<String> listModel = Translator.getKeysNames(AdHocGloss.getCurrent());
-        jList1 = new JList<>(listModel);        
+        DefaultListModel<String> listKeys = new DefaultListModel<>();
+        AdHocGloss.getCurrentList().forEach((key, value) -> listKeys.addElement((String) key));        
+        jList1 = new JList<>(listKeys);        
         jList1.setEnabled(true);
     }
 

@@ -41,11 +41,11 @@ public class Entry {
         return def;
     }
     
-    public void setDifficulty(int difficulty){
+    public void setDiff(int difficulty){
         this.diff=difficulty; 
     }
     
-    public int getDifficulty(){
+    public int getDiff(){
         return diff;
     }
     

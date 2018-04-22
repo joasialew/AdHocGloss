@@ -1,6 +1,7 @@
 
 package adhocgloss;
 import java.awt.Toolkit;
+import javax.swing.DefaultComboBoxModel;
 
 
 
@@ -22,11 +23,21 @@ public class EditDisp extends javax.swing.JFrame {
     
     Entry entry;
     
+    public EditDisp(Entry ent){
+        initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
+        setResizable(false);
+        entry = ent;
+        display(entry);
+    }
+    
+    
     
     public EditDisp() {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
-        setResizable(false);
+        setResizable(false);        
+        display(entry);
     }
 
     /**
@@ -219,10 +230,12 @@ public class EditDisp extends javax.swing.JFrame {
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_saveActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     
@@ -257,7 +270,30 @@ public class EditDisp extends javax.swing.JFrame {
     }
     
     
-    
+    void display(Entry en){
+        jTextField1.setText(en.getName());
+        int d = en.getDiff();
+        switch(d){
+            case 1 : 
+                jRadioButton1.setSelected(true);
+                break;
+            case 2 : 
+                jRadioButton2.setSelected(true);
+                break;
+            case 3 : 
+                jRadioButton3.setSelected(true);
+                break;
+            case 4 : 
+                jRadioButton4.setSelected(true);
+                break;
+            case 5 : 
+                jRadioButton5.setSelected(true);
+                break;             
+        }
+        jTextPane1.setText(en.getDef());
+        
+        jComboBox1.setModel(new DefaultComboBoxModel(AdHocGloss.listDir.toArray()));        
+    }
     
 
 }

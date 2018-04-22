@@ -28,7 +28,7 @@ public class Translator{
         return en;
     }
     
-    //trzeba dodać resztę encode i resztę comaparatorów
+
     
     private static int decodeDiff(String value){
         return (int) value.charAt(0);
@@ -44,17 +44,10 @@ public class Translator{
     }        
     
     public static String encode(Entry en){
-        String def = String.valueOf(en.getDifficulty()) + String.valueOf(en.getLastAns()) + String.valueOf(en.getDateReg()) + "#" + en.getDef();
+        String def = String.valueOf(en.getDiff()) + String.valueOf(en.getLastAns()) + String.valueOf(en.getDateReg()) + "#" + en.getDef();
         return def;
     }
-    
-    
-    public static DefaultListModel<String> getKeysNames(String title){
-        DefaultListModel<String> listKeys = new DefaultListModel<>();
-        AdHocGloss.getCurrentList().forEach((key, value) -> listKeys.addElement((String) key));        
-        return listKeys;
-    }
-    
+        
     
     public static <K, V extends Comparable<V>> Map<K, V> sortByDiff(final Map<K, V> map) {
         Comparator<K> valueComparator = new Comparator<K>() {
