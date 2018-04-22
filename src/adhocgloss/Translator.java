@@ -43,7 +43,7 @@ public class Translator{
         return Long.parseLong(value.substring(2,i-1));
     }        
     
-    public static String encode(Entry en){
+    public static String encodeDef(Entry en){
         String def = String.valueOf(en.getDiff()) + String.valueOf(en.getLastAns()) + String.valueOf(en.getDateReg()) + "#" + en.getDef();
         return def;
     }

@@ -10,6 +10,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -40,7 +43,7 @@ public class AdHocGloss {
     }
     
     
-    public void pair(String name, String def){
+    public static void pair(String name, String def){
         currentList.put(name, def);
         saveCurrentList();
     }
@@ -88,6 +91,46 @@ public class AdHocGloss {
         currentList.remove(key);
     }
     
+    public static void save(Entry ent){
+        currentList.put(ent.getName(), Translator.encodeDef(ent));
+    }
+    
+    public static void addList(String title){
+        listDir.add(title);
+    }
+    
+    public static void renameCurrentList(String newTitle){
+        listDir.remove(current);
+        listDir.add(newTitle);
+        try{    		
+            File file = new File("Listy/"+current+".txt");      	
+            if(file.renameTo(new File("Listy/"+current+".txt"))){
+                System.out.println(file.getName() + " is renamed!");
+            }else{
+                System.out.println("Rename operation is failed.");
+            }    	   
+    	}catch(Exception e){
+            e.printStackTrace();    		
+    	}
+        current = newTitle;
+    }
+    
+    public static void deleteCurrentList(){
+        listDir.remove(current);
+        try{    		
+            File file = new File("Listy/"+current+".txt");      	
+            if(file.delete()){
+                System.out.println(file.getName() + " is deleted!");
+            }else{
+                System.out.println("Delete operation is failed.");
+            }    	   
+    	}catch(Exception e){
+            e.printStackTrace();    		
+    	}
+        current = listDir.get(0);
+        readList(current);
+    }
+    
     
     public static void readLists(){
         listDir = new ArrayList<String>();
@@ -125,7 +168,7 @@ public class AdHocGloss {
         
         FileInputStream in;
         try {
-            in = new FileInputStream(title);
+            in = new FileInputStream("Listy/"+title+".txt");
             prop.load(in);        
             in.close();
         } catch (FileNotFoundException ex) {
@@ -142,17 +185,18 @@ public class AdHocGloss {
     public static void saveCurrentList(){
         FileOutputStream out;
         try {
-            out = new FileOutputStream(current);
+            out = new FileOutputStream("Listy/"+current+".txt");
             currentList.store(out, "AdHocGlossary");
             out.close();
+            return;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);            
             System.out.println("Nie znaleziono pliku!");
         } catch (IOException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);           
             System.out.println("Problem z zapisywaniem pliku!");
-        }        
-        
+        }       
+        currentList = new Properties();
     }
     
     

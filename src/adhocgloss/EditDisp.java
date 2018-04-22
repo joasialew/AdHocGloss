@@ -1,6 +1,8 @@
 
 package adhocgloss;
+
 import java.awt.Toolkit;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 
 
@@ -22,6 +24,7 @@ public class EditDisp extends javax.swing.JFrame {
      */
     
     Entry entry;
+    int selection = 3;
     
     public EditDisp(Entry ent){
         initComponents();
@@ -79,7 +82,7 @@ public class EditDisp extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(660, 520));
         getContentPane().setLayout(null);
 
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setEnabled(false);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +120,11 @@ public class EditDisp extends javax.swing.JFrame {
         jRadioButton1.setText("1");
         jRadioButton1.setEnabled(false);
         jRadioButton1.setOpaque(false);
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButton1);
         jRadioButton1.setBounds(260, 130, 39, 31);
 
@@ -125,6 +133,11 @@ public class EditDisp extends javax.swing.JFrame {
         jRadioButton2.setText("2");
         jRadioButton2.setEnabled(false);
         jRadioButton2.setOpaque(false);
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButton2);
         jRadioButton2.setBounds(320, 130, 39, 31);
 
@@ -133,6 +146,11 @@ public class EditDisp extends javax.swing.JFrame {
         jRadioButton5.setText("5");
         jRadioButton5.setEnabled(false);
         jRadioButton5.setOpaque(false);
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButton5);
         jRadioButton5.setBounds(490, 130, 39, 31);
 
@@ -141,6 +159,11 @@ public class EditDisp extends javax.swing.JFrame {
         jRadioButton4.setText("4");
         jRadioButton4.setEnabled(false);
         jRadioButton4.setOpaque(false);
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButton4);
         jRadioButton4.setBounds(430, 130, 39, 31);
 
@@ -149,6 +172,11 @@ public class EditDisp extends javax.swing.JFrame {
         jRadioButton3.setText("3");
         jRadioButton3.setEnabled(false);
         jRadioButton3.setOpaque(false);
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButton3);
         jRadioButton3.setBounds(370, 130, 39, 31);
 
@@ -230,13 +258,45 @@ public class EditDisp extends javax.swing.JFrame {
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
-        
+        AdHocGloss.delete(entry.getName());
+        Date date = new Date();
+        entry = new Entry(jTextField1.getText(),selection, 0, date.getTime(), jTextPane1.getText());
+        AdHocGloss.pair(entry.getName(), Translator.encodeDef(entry));
     }//GEN-LAST:event_saveActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        
+        String sel = (String) jComboBox1.getSelectedItem();
+        if (sel.equals("Dodaj nową listę...")){
+            jComboBox1.setEditable(true);
+        }
+      
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        selection = 1;
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        selection = 2;
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+        selection = 3;
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+        selection = 4;
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        // TODO add your handling code here:
+        selection = 5;
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     
 
@@ -272,8 +332,8 @@ public class EditDisp extends javax.swing.JFrame {
     
     void display(Entry en){
         jTextField1.setText(en.getName());
-        int d = en.getDiff();
-        switch(d){
+        selection = en.getDiff();
+        switch(selection){
             case 1 : 
                 jRadioButton1.setSelected(true);
                 break;
@@ -292,7 +352,10 @@ public class EditDisp extends javax.swing.JFrame {
         }
         jTextPane1.setText(en.getDef());
         
-        jComboBox1.setModel(new DefaultComboBoxModel(AdHocGloss.listDir.toArray()));        
+        
+        DefaultComboBoxModel myModel = new DefaultComboBoxModel(AdHocGloss.listDir.toArray());
+        myModel.addElement("Dodaj nową listę...");
+        jComboBox1.setModel(myModel);        
     }
     
 

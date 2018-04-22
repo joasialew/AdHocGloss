@@ -52,6 +52,11 @@ public class Quiz extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("1");
         jRadioButton1.setOpaque(false);
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButton1);
         jRadioButton1.setBounds(150, 390, 35, 25);
 
@@ -136,6 +141,10 @@ public class Quiz extends javax.swing.JFrame {
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     
     public static void main(String args[]) {
