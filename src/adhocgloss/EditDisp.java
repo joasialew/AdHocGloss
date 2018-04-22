@@ -85,6 +85,11 @@ public class EditDisp extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setEnabled(false);
+        jComboBox1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jComboBox1FocusLost(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -241,6 +246,7 @@ public class EditDisp extends javax.swing.JFrame {
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
         AdHocGloss.delete(entry.getName());
+        this.dispose();
     }//GEN-LAST:event_deleteActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
@@ -261,16 +267,16 @@ public class EditDisp extends javax.swing.JFrame {
         AdHocGloss.delete(entry.getName());
         Date date = new Date();
         entry = new Entry(jTextField1.getText(),selection, 0, date.getTime(), jTextPane1.getText());
+        if (jComboBox1.getSelectedItem() != AdHocGloss.getCurrent())
+            AdHocGloss.setCurrent((String) jComboBox1.getSelectedItem());
         AdHocGloss.pair(entry.getName(), Translator.encodeDef(entry));
+        this.dispose();
     }//GEN-LAST:event_saveActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        String sel = (String) jComboBox1.getSelectedItem();
-        if (sel.equals("Dodaj nową listę...")){
-            jComboBox1.setEditable(true);
-        }
-      
+        // TODO add your handling code here:    
+        AdHocGloss.setCurrent((String) jComboBox1.getSelectedItem());
+        jComboBox1.setEditable(true);    
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -297,6 +303,12 @@ public class EditDisp extends javax.swing.JFrame {
         // TODO add your handling code here:
         selection = 5;
     }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jComboBox1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusLost
+        // TODO add your handling code here:
+        AdHocGloss.renameCurrentList((String) jComboBox1.getSelectedItem());
+        setComboBox();
+    }//GEN-LAST:event_jComboBox1FocusLost
 
     
 
@@ -352,10 +364,19 @@ public class EditDisp extends javax.swing.JFrame {
         }
         jTextPane1.setText(en.getDef());
         
-        
+        setComboBox();
+             
+    }
+    
+    void setComboBox(){
         DefaultComboBoxModel myModel = new DefaultComboBoxModel(AdHocGloss.listDir.toArray());
         myModel.addElement("Dodaj nową listę...");
-        jComboBox1.setModel(myModel);        
+        jComboBox1.setModel(myModel);
+        jComboBox1.setSelectedItem(AdHocGloss.getCurrent());
+    }
+
+    private void If(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 

@@ -52,7 +52,7 @@ public class AdHocGloss {
         return currentList.containsKey(key);
     }
     
-    public String getValue(String key){
+    public static String getValue(String key){
         return currentList.getProperty(key);
     }
     

@@ -80,9 +80,9 @@ public class Forms extends javax.swing.JFrame {
         });
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
             }
         });
         jScrollPane1.setViewportView(jList1);
@@ -212,10 +212,12 @@ public class Forms extends javax.swing.JFrame {
         displayLists(AdHocGloss.listDir);      
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jList1MouseClicked
+        if (isListSelected){
+            new EditDisp(Translator.decode(jList1.getSelectedValue()));
+        }
+    }//GEN-LAST:event_jList1ValueChanged
 
     
     public static void main(String args[]) {
