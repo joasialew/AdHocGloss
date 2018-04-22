@@ -1,7 +1,10 @@
 
 package adhocgloss;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.VK_ENTER;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
@@ -266,7 +269,7 @@ public class EditDisp extends javax.swing.JFrame {
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
         String newName = (String) jComboBox1.getSelectedItem();
-        if (newName.equals(AdHocGloss.getCurrent())){
+        if (!newName.equals(AdHocGloss.getCurrent())){
             if (AdHocGloss.getCurrent().equals("Dodaj nową listę..."))
                 AdHocGloss.addList(newName);
             else
@@ -281,9 +284,19 @@ public class EditDisp extends javax.swing.JFrame {
         
         System.out.println(entry);
         
-        if (jComboBox1.getSelectedItem() != AdHocGloss.getCurrent())
-            AdHocGloss.setCurrent((String) jComboBox1.getSelectedItem());
+        
         AdHocGloss.pair(entry.getName(), Translator.encodeDef(entry));
+        System.out.println(AdHocGloss.getCurrentList().toString());
+        
+        try {
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_5);
+            robot.keyRelease(KeyEvent.VK_5);
+
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }    
+        
         this.dispose();
     }//GEN-LAST:event_saveActionPerformed
 

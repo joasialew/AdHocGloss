@@ -163,6 +163,11 @@ public class Forms extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adhocgloss/back1.png"))); // NOI18N
         jLabel2.setText("jLabel2");
+        jLabel2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jLabel2KeyReleased(evt);
+            }
+        });
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 760, 570);
 
@@ -223,6 +228,7 @@ public class Forms extends javax.swing.JFrame {
         else{
             AdHocGloss.setCurrent(jList1.getSelectedValue());
             displayCurrentList();
+            isListSelected = true;
         }
     }//GEN-LAST:event_jList1ValueChanged
 
@@ -234,6 +240,13 @@ public class Forms extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jLabel2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel2KeyReleased
+        // TODO add your handling code here:
+        if (evt.equals(KeyEvent.VK_5)){
+            displayCurrentList();
+        }
+    }//GEN-LAST:event_jLabel2KeyReleased
 
     
     public static void main(String args[]) {
@@ -288,19 +301,22 @@ public class Forms extends javax.swing.JFrame {
     
     
 
-    private void displayCurrentList() {
+    public void displayCurrentList() {
         DefaultListModel<String> listKeys = new DefaultListModel<>();           
         jList1.setEnabled(true);
-        if (AdHocGloss.isEmpty()){
+        
+        String[] temp = Translator.getKeys();
+        System.out.println(temp.toString());
+        
+        for (int j = 0; j < temp.length; j++){
+            System.out.println(temp[j]);
+            listKeys.addElement(temp[j]);
+        }
+        if (listKeys.isEmpty()){            
             listKeys.addElement("Brak elementów");
             jList1.setEnabled(false);
-            return;
-        }else{
-            for (String item:Translator.getKeys())
-                listKeys.addElement(item);
-            isListSelected = true;
         }       
-        
+        jList1.setModel(listKeys);
         back.setVisible(true);
         delete.setVisible(true);
         jLabel1.setText(AdHocGloss.getCurrent());
@@ -309,16 +325,16 @@ public class Forms extends javax.swing.JFrame {
 
     private void displayLists(ArrayList<String> li){
         DefaultListModel<String> listModel = new DefaultListModel<>(); 
-        AdHocGloss.listDir.forEach((String name) -> {
-            listModel.addElement(name);
-        });
-        System.out.println(listModel);
-        jList1.setModel(listModel);
-        jList1.setEnabled(true);
         back.setVisible(false);
         delete.setVisible(false);        
         isListSelected = false;
         jLabel1.setText("Wybierz listę");
+        for (String item : li){
+            listModel.addElement(item);
+        }
+        System.out.println(listModel);
+        jList1.setModel(listModel);
+        jList1.setEnabled(true);
     }
     
     

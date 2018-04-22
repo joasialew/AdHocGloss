@@ -52,11 +52,12 @@ public class Translator{
     
     public static String[] getKeys(){
         String[] keyList = new String[AdHocGloss.getCurrentList().size()];
-        Enumeration<Object> enums = (Enumeration<Object>) AdHocGloss.getCurrentList().keys();
+        Set<String> keys = AdHocGloss.getCurrentList().stringPropertyNames();
         int it = 0;
-        while (enums.hasMoreElements()) {
-            keyList[it] = (String) enums.nextElement();
-        }
+        for (String key : keys) {
+            keyList[it] = key;
+            System.out.println(key + " : " );
+    }
         return keyList;
     }
     

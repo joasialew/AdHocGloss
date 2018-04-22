@@ -50,7 +50,9 @@ public class AdHocGloss {
     }
     
     public static boolean isEmpty(){
+        System.out.println("cur is empty:" + currentList.isEmpty());
         return currentList.isEmpty();
+        
     }
     
     public static String getValue(String key){
@@ -98,6 +100,7 @@ public class AdHocGloss {
     
     public static void save(Entry ent){
         currentList.put(ent.getName(), Translator.encodeDef(ent));
+        saveCurrentList();
     }
     
     public static void addList(String title){
@@ -153,6 +156,7 @@ public class AdHocGloss {
                 if (i > 0) {
                     extension = fileName.substring(i+1);
                     fileName = fileName.substring(0,i);
+                    System.out.println(fileName + "." + extension);
                 }                             
                 
                 if (extension.equals("txt" ) && !fileName.equals("")){
@@ -177,6 +181,7 @@ public class AdHocGloss {
             in = new FileInputStream("Listy/"+title+".txt");
             prop.load(in);        
             in.close();
+            System.out.println("Po przeczytaniu z pliku: " + prop.toString());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Nie znaleziono pliku!");
