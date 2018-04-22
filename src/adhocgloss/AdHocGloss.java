@@ -14,7 +14,9 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,7 +47,6 @@ public class AdHocGloss {
     
     public static void pair(String name, String def){        
         currentList.put(name, def);
-        System.out.println(currentList.toString());
         saveCurrentList();
     }
     
@@ -59,8 +60,16 @@ public class AdHocGloss {
         return currentList.getProperty(key);
     }
     
-    public static Properties getCurrentList(){
-        return currentList;
+     public static String[] getCurrentKeys(){
+        String[] keyList = new String[currentList.size()];
+        Set<String> keys = currentList.stringPropertyNames();
+        int it = 0;
+        for (String key : keys) {
+            keyList[it] = key;
+            System.out.println(key + " : " );
+            it++;
+        }
+        return keyList;
     }
     
     public static String getCurrent(){
@@ -71,7 +80,7 @@ public class AdHocGloss {
         if (!listDir.contains(title))
             return false;
         current = title;
-        readList(current);
+        currentList = readList(current);
         return true;
     }
     
@@ -97,12 +106,7 @@ public class AdHocGloss {
             System.out.println("Nie usunięto");
         }
     }
-    
-    public static void save(Entry ent){
-        currentList.put(ent.getName(), Translator.encodeDef(ent));
-        saveCurrentList();
-    }
-    
+       
     public static void addList(String title){
         listDir.add(title);
         current = title;        

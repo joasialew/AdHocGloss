@@ -16,7 +16,7 @@ public class Forms extends javax.swing.JFrame {
 
     public Forms() {
         initComponents();
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("media\\rysunek.png"));
         this.setResizable(false);
         this.setDefaultCloseOperation(3);
         
@@ -305,7 +305,7 @@ public class Forms extends javax.swing.JFrame {
         DefaultListModel<String> listKeys = new DefaultListModel<>();           
         jList1.setEnabled(true);
         
-        String[] temp = Translator.getKeys();
+        String[] temp = AdHocGloss.getCurrentKeys();
         System.out.println(temp.toString());
         
         for (int j = 0; j < temp.length; j++){

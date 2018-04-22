@@ -50,20 +50,20 @@ public class Translator{
         return def;
     }
     
+    /*
     public static String[] getKeys(){
+        System.out.println("wielkość prop" + AdHocGloss.getCurrentList().size());
         String[] keyList = new String[AdHocGloss.getCurrentList().size()];
         Set<String> keys = AdHocGloss.getCurrentList().stringPropertyNames();
         int it = 0;
         for (String key : keys) {
             keyList[it] = key;
             System.out.println(key + " : " );
-    }
+            it++;
+        }
         return keyList;
-    }
+    }*/
     
-    
-    
-        
     
     public static <K, V extends Comparable<V>> Map<K, V> sortByDiff(final Map<K, V> map) {
         Comparator<K> valueComparator = new Comparator<K>() {

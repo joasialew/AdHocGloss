@@ -9,7 +9,7 @@ public class Quiz extends javax.swing.JFrame {
     
     public Quiz() {
         initComponents();
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("media\\rysunek.png"));
         this.setResizable(false);
         this.setDefaultCloseOperation(2);
         this.setBounds(200,200,515,450);

@@ -35,14 +35,12 @@ public class EditDisp extends javax.swing.JFrame {
     
     public EditDisp(){
         initComponents();
-        setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
+        setIconImage(Toolkit.getDefaultToolkit().getImage("media\\rysunek.png"));
         setResizable(false);
         edit.setVisible(false);
         enableFields(true);
         entry = new Entry();
     }
-    
-    
     
     public EditDisp(Entry ent){
         initComponents();
@@ -286,7 +284,7 @@ public class EditDisp extends javax.swing.JFrame {
         
         
         AdHocGloss.pair(entry.getName(), Translator.encodeDef(entry));
-        System.out.println(AdHocGloss.getCurrentList().toString());
+        System.out.println(AdHocGloss.getCurrentKeys().toString());
         
         try {
             Robot robot = new Robot();
