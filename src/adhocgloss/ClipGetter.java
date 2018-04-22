@@ -38,17 +38,24 @@ public class ClipGetter implements ClipboardOwner {
     }
 
     void controlC(CustomUser32 customUser32) {
-        try {
+        /*try {
             Robot robot = new Robot();
             robot.keyPress(KeyEvent.VK_C);
             robot.keyPress(KeyEvent.VK_CONTROL);
             
             robot.keyRelease(KeyEvent.VK_C);
             robot.keyRelease(KeyEvent.VK_CONTROL);
+            System.out.println("w cntr c");
 
         } catch (AWTException e) {
             e.printStackTrace();
-        }
+        }*/
+        
+        customUser32.keybd_event((byte) 0x11 /* VK_CONTROL*/, (byte) 0, 0, 0);
+        customUser32.keybd_event((byte) 0x43 /* 'C' */, (byte) 0, 0, 0);
+        customUser32.keybd_event((byte) 0x43 /* 'C' */, (byte) 0, 2 /* KEYEVENTF_KEYUP */, 0);
+        customUser32.keybd_event((byte) 0x11 /* VK_CONTROL*/, (byte) 0, 2 /* KEYEVENTF_KEYUP */, 0);// 'Left Control Up
+    
     }
 
     String getClipboardText() throws Exception {

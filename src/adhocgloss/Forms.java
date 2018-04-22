@@ -21,6 +21,7 @@ public class Forms extends javax.swing.JFrame {
         this.setDefaultCloseOperation(3);
         
         displayLists(AdHocGloss.listDir);
+        jRadioButton2.setSelected(true);
     }
 
    
@@ -28,6 +29,7 @@ public class Forms extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        searchGroup = new javax.swing.ButtonGroup();
         newEntry = new javax.swing.JButton();
         quiz = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -84,6 +86,11 @@ public class Forms extends javax.swing.JFrame {
         });
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jList1ValueChanged(evt);
@@ -99,8 +106,8 @@ public class Forms extends javax.swing.JFrame {
         jTextField1.setText("...");
         jTextField1.setMargin(new java.awt.Insets(2, 20, 2, 20));
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTextField1MousePressed(evt);
             }
         });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -126,18 +133,20 @@ public class Forms extends javax.swing.JFrame {
         getContentPane().add(searchButton);
         searchButton.setBounds(580, 70, 140, 40);
 
+        searchGroup.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jRadioButton1.setText("Hasła");
+        jRadioButton1.setText("Hasła (?)");
         jRadioButton1.setToolTipText("Znajduje wszystkie listy, na których hasło występuje");
         jRadioButton1.setOpaque(false);
         getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(480, 80, 90, 20);
+        jRadioButton1.setBounds(460, 80, 110, 20);
 
+        searchGroup.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jRadioButton2.setText("Listy");
         jRadioButton2.setOpaque(false);
         getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(390, 80, 65, 20);
+        jRadioButton2.setBounds(380, 80, 65, 20);
 
         back.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         back.setText("WSTECZ");
@@ -192,8 +201,8 @@ public class Forms extends javax.swing.JFrame {
         boolean success = false;
         
         String t = jTextField1.getText();
-        boolean isList = jRadioButton1.isSelected();
-        if (isList){            
+        boolean isList = jRadioButton2.isSelected();
+        if (isList){
             success = AdHocGloss.setCurrent(t);
             if (success = AdHocGloss.setCurrent(t)){
                 displayCurrentList();
@@ -209,9 +218,12 @@ public class Forms extends javax.swing.JFrame {
         if (!success){
             DefaultListModel<String> listModel = new DefaultListModel<>();
             listModel.addElement("Nie znaleziono szukanego elementu");
-            jList1 = new JList<>(listModel);
+            jList1.setModel(listModel);
             jList1.setEnabled(false);
         }
+        
+        back.setVisible(true);
+        jTextField1.setText("...");
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
@@ -222,20 +234,8 @@ public class Forms extends javax.swing.JFrame {
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         // TODO add your handling code here:
-        if (isListSelected){
-            new EditDisp(Translator.decode(jList1.getSelectedValue()));
-        }
-        else{
-            AdHocGloss.setCurrent(jList1.getSelectedValue());
-            displayCurrentList();
-            isListSelected = true;
-        }
+        
     }//GEN-LAST:event_jList1ValueChanged
-
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        // TODO add your handling code here:
-         jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -247,6 +247,27 @@ public class Forms extends javax.swing.JFrame {
             displayCurrentList();
         }
     }//GEN-LAST:event_jLabel2KeyReleased
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        String temp = jList1.getSelectedValue();
+        if (temp == null)
+            return;
+        
+        if (isListSelected){
+            new EditDisp(Translator.decode(temp)).setVisible(true);
+        }
+        else{
+            AdHocGloss.setCurrent(temp);
+            displayCurrentList();
+            isListSelected = true;
+        }
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void jTextField1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MousePressed
+        // TODO add your handling code here:
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MousePressed
 
     
     public static void main(String args[]) {
@@ -293,6 +314,7 @@ public class Forms extends javax.swing.JFrame {
     private javax.swing.JButton newEntry;
     private javax.swing.JButton quiz;
     private javax.swing.JButton searchButton;
+    private javax.swing.ButtonGroup searchGroup;
     // End of variables declaration//GEN-END:variables
   
     
@@ -306,19 +328,20 @@ public class Forms extends javax.swing.JFrame {
         jList1.setEnabled(true);
         
         String[] temp = AdHocGloss.getCurrentKeys();
-        System.out.println(temp.toString());
         
         for (int j = 0; j < temp.length; j++){
-            System.out.println(temp[j]);
             listKeys.addElement(temp[j]);
         }
+        
         if (listKeys.isEmpty()){            
             listKeys.addElement("Brak elementów");
             jList1.setEnabled(false);
         }       
         jList1.setModel(listKeys);
+       
         back.setVisible(true);
         delete.setVisible(true);
+        quiz.setEnabled(true);
         jLabel1.setText(AdHocGloss.getCurrent());
     }
 
@@ -326,13 +349,13 @@ public class Forms extends javax.swing.JFrame {
     private void displayLists(ArrayList<String> li){
         DefaultListModel<String> listModel = new DefaultListModel<>(); 
         back.setVisible(false);
-        delete.setVisible(false);        
+        delete.setVisible(false);
+        quiz.setEnabled(false);
         isListSelected = false;
         jLabel1.setText("Wybierz listę");
         for (String item : li){
             listModel.addElement(item);
         }
-        System.out.println(listModel);
         jList1.setModel(listModel);
         jList1.setEnabled(true);
     }

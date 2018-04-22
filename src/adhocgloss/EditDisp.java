@@ -40,6 +40,12 @@ public class EditDisp extends javax.swing.JFrame {
         edit.setVisible(false);
         enableFields(true);
         entry = new Entry();
+        jRadioButton3.setSelected(true);
+    }
+    
+    public EditDisp(String word){
+        this();
+        jTextField1.setText(word);
     }
     
     public EditDisp(Entry ent){
@@ -201,7 +207,7 @@ public class EditDisp extends javax.swing.JFrame {
         jRadioButton3.setBounds(370, 130, 39, 31);
 
         jTextPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextPane1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTextPane1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jTextPane1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextPane1.setEnabled(false);
         jTextPane1.setMargin(new java.awt.Insets(15, 15, 15, 15));
@@ -256,6 +262,7 @@ public class EditDisp extends javax.swing.JFrame {
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
         AdHocGloss.delete(entry.getName());
+        refresh();
         this.dispose();
     }//GEN-LAST:event_deleteActionPerformed
 
@@ -280,28 +287,19 @@ public class EditDisp extends javax.swing.JFrame {
         
         entry = new Entry(jTextField1.getText(),selection, 0, date.getTime(), jTextPane1.getText());
         
-        System.out.println(entry);
-        
-        
         AdHocGloss.pair(entry.getName(), Translator.encodeDef(entry));
-        System.out.println(AdHocGloss.getCurrentKeys().toString());
         
-        try {
-            Robot robot = new Robot();
-            robot.keyPress(KeyEvent.VK_5);
-            robot.keyRelease(KeyEvent.VK_5);
-
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }    
-        
+        refresh();      
         this.dispose();
     }//GEN-LAST:event_saveActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        AdHocGloss.setCurrent((String) jComboBox1.getSelectedItem());
-        jComboBox1.setEditable(true);
+        if (jComboBox1.isEnabled()){
+            AdHocGloss.setCurrent((String) jComboBox1.getSelectedItem());
+            jComboBox1.setEditable(true);
+        }
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -336,7 +334,7 @@ public class EditDisp extends javax.swing.JFrame {
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         // TODO add your handling code here:
-        jTextField1.setText("");
+        if(jTextField1.isEnabled())        jTextField1.setText("");
         
     }//GEN-LAST:event_jTextField1MouseClicked
 
@@ -420,10 +418,23 @@ public class EditDisp extends javax.swing.JFrame {
         jRadioButton3.setEnabled(b);
         jRadioButton4.setEnabled(b);
         jRadioButton5.setEnabled(b);
+        edit.setEnabled(!b);
         setComboBox();
     }
     
+    
+    void refresh(){
+        try {
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_5);
+            robot.keyRelease(KeyEvent.VK_5);
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }   
+    }
 
+ 
+    
 }
 
 

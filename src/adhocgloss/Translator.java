@@ -25,7 +25,6 @@ public class Translator{
         String value = AdHocGloss.getValue(key);
         int i = value.indexOf('#');
         String def = value.substring(i+1);
-        
         Entry en = new Entry(key,decodeDiff(value),decodeLA(value),decodeDate(value),def);
         return en;
     }
@@ -33,11 +32,11 @@ public class Translator{
 
     
     private static int decodeDiff(String value){
-        return (int) value.charAt(0);
+        return Character.getNumericValue(value.charAt(0));
     }
     
-    private static int decodeLA(String value){
-        return (int) value.charAt(1);
+    public static int decodeLA(String value){
+        return Character.getNumericValue(value.charAt(1));
     }
     
     private static long decodeDate(String value){

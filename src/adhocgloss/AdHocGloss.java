@@ -41,6 +41,7 @@ public class AdHocGloss {
         
         Thread tg = new Thread(new GetterThread());
         tg.start();
+        
         new Forms().setVisible(true);
     }
     
@@ -51,22 +52,26 @@ public class AdHocGloss {
     }
     
     public static boolean isEmpty(){
-        System.out.println("cur is empty:" + currentList.isEmpty());
         return currentList.isEmpty();
         
     }
     
     public static String getValue(String key){
-        return currentList.getProperty(key);
+        String r = "";
+        try{
+            r = currentList.getProperty(key);
+        } catch (NullPointerException e){
+            System.out.println("nullpointer :(");
+        }
+        return  r;
     }
     
-     public static String[] getCurrentKeys(){
+    public static String[] getCurrentKeys(){
         String[] keyList = new String[currentList.size()];
         Set<String> keys = currentList.stringPropertyNames();
         int it = 0;
         for (String key : keys) {
             keyList[it] = key;
-            System.out.println(key + " : " );
             it++;
         }
         return keyList;
@@ -160,7 +165,6 @@ public class AdHocGloss {
                 if (i > 0) {
                     extension = fileName.substring(i+1);
                     fileName = fileName.substring(0,i);
-                    System.out.println(fileName + "." + extension);
                 }                             
                 
                 if (extension.equals("txt" ) && !fileName.equals("")){
@@ -185,7 +189,6 @@ public class AdHocGloss {
             in = new FileInputStream("Listy/"+title+".txt");
             prop.load(in);        
             in.close();
-            System.out.println("Po przeczytaniu z pliku: " + prop.toString());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Nie znaleziono pliku!");
