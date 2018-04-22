@@ -28,11 +28,13 @@ public class Quiz extends javax.swing.JFrame {
         {
             generateRandomAnswer();
         }
+        int slowo=(int)(Math.random()*tabLicz[RandAns]);
         return RandAns;        
     }
     
-    public String generateRandomWord(int slowo, int randomAnswer )
+    public String generateRandomWord(int randomAnswer )
     {
+        int slowo=(int)(Math.random()*tabLicz[randomAnswer]+1);
         int it = 0;
         for(Map.Entry<String,String> entry : Quiz.entrySet()) 
         {
@@ -54,10 +56,8 @@ public class Quiz extends javax.swing.JFrame {
     public String giveRandomWord()
     {
         int RandomAnswer=this.generateRandomAnswer();
-        return generateRandomWord((int)(tabLicz[RandomAnswer+2]*Math.random()+1),RandomAnswer);
-    }
-    
-    
+        return generateRandomWord(RandomAnswer);
+    }        
     
     public long changeTotalCount(Entry e, int answer)
     //przedzial answer:(-2)-(2) Totalnie nie umiem-Umiem perfekcyjnie
@@ -68,7 +68,23 @@ public class Quiz extends javax.swing.JFrame {
         e.setLastAns(answer);
         rank+=2*(answer-1)+e.getDifficulty()-1;
         return rank;        
-}
+    }
+    
+    public void startQuizu()
+    {
+        int a=this.generateRandomAnswer();
+        this.generateRandomWord(a);
+        String b=this.giveRandomWord();
+        //uzytkownik klika opcje 1-5
+        int answer;
+        this.changeTotalCount(Translator.decode(b),a);
+        //uzytkownik decyduje, czy chce grac dalej
+        boolean decyzja=true;
+        if(decyzja==true)
+        {
+            startQuizu();
+        }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

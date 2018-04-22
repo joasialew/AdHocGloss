@@ -20,7 +20,8 @@ import javax.swing.DefaultListModel;
 public class Translator{
     
     
-    public static Entry decode(String key, String value){
+    public static Entry decode(String key){
+        String value = AdHocGloss.getValue(key);
         int i = value.indexOf('#');
         String def = value.substring(i+1);
         
