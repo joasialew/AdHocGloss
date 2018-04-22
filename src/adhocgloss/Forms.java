@@ -4,6 +4,7 @@ import java.awt.Toolkit;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.swing.*;
 
 
@@ -62,7 +63,7 @@ public class Forms extends javax.swing.JFrame {
             }
         });
         getContentPane().add(newEntry);
-        newEntry.setBounds(30, 20, 89, 40);
+        newEntry.setBounds(30, 20, 140, 40);
 
         quiz.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         quiz.setText("QUIZ");
@@ -102,6 +103,11 @@ public class Forms extends javax.swing.JFrame {
                 jTextField1MouseClicked(evt);
             }
         });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField1);
         jTextField1.setBounds(180, 20, 540, 40);
 
@@ -136,7 +142,6 @@ public class Forms extends javax.swing.JFrame {
         back.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         back.setText("WSTECZ");
         back.setToolTipText("Wróć do wszystkich list");
-        back.setEnabled(false);
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
@@ -165,7 +170,7 @@ public class Forms extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEntryActionPerformed
-        new EditDisp(new Entry()).setVisible(true);
+        new EditDisp().setVisible(true);
     }//GEN-LAST:event_newEntryActionPerformed
 
     private void quizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quizActionPerformed
@@ -215,12 +220,20 @@ public class Forms extends javax.swing.JFrame {
         if (isListSelected){
             new EditDisp(Translator.decode(jList1.getSelectedValue()));
         }
+        else{
+            AdHocGloss.setCurrent(jList1.getSelectedValue());
+            displayCurrentList();
+        }
     }//GEN-LAST:event_jList1ValueChanged
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         // TODO add your handling code here:
          jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     
     public static void main(String args[]) {
@@ -276,13 +289,20 @@ public class Forms extends javax.swing.JFrame {
     
 
     private void displayCurrentList() {
-        DefaultListModel<String> listKeys = new DefaultListModel<>();
-        AdHocGloss.getCurrentList().forEach((key, value) -> listKeys.addElement((String) key));        
-        jList1 = new JList<>(listKeys);        
+        DefaultListModel<String> listKeys = new DefaultListModel<>();           
         jList1.setEnabled(true);
+        if (AdHocGloss.isEmpty()){
+            listKeys.addElement("Brak elementów");
+            jList1.setEnabled(false);
+            return;
+        }else{
+            for (String item:Translator.getKeys())
+                listKeys.addElement(item);
+            isListSelected = true;
+        }       
+        
         back.setVisible(true);
         delete.setVisible(true);
-        isListSelected = false;
         jLabel1.setText(AdHocGloss.getCurrent());
     }
 
@@ -292,11 +312,12 @@ public class Forms extends javax.swing.JFrame {
         AdHocGloss.listDir.forEach((String name) -> {
             listModel.addElement(name);
         });
-        jList1 = new JList<>(listModel);
+        System.out.println(listModel);
+        jList1.setModel(listModel);
         jList1.setEnabled(true);
         back.setVisible(false);
         delete.setVisible(false);        
-        isListSelected = true;
+        isListSelected = false;
         jLabel1.setText("Wybierz listę");
     }
     

@@ -2,6 +2,7 @@
 package adhocgloss;
 
 import java.awt.Toolkit;
+import static java.awt.event.KeyEvent.VK_ENTER;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 
@@ -24,7 +25,21 @@ public class EditDisp extends javax.swing.JFrame {
      */
     
     Entry entry;
-    int selection = 3;
+    int selection = 3;    
+    boolean newList = false;
+    String listPrior = "";
+    
+    
+    public EditDisp(){
+        initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
+        setResizable(false);
+        edit.setVisible(false);
+        enableFields(true);
+        entry = new Entry();
+    }
+    
+    
     
     public EditDisp(Entry ent){
         initComponents();
@@ -32,6 +47,9 @@ public class EditDisp extends javax.swing.JFrame {
         setResizable(false);
         entry = ent;
         display(entry);
+        edit.setVisible(true);
+        enableFields(false);
+        
     }
     
 
@@ -64,14 +82,13 @@ public class EditDisp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ad Hoc Gloss");
-        setBounds(new java.awt.Rectangle(100, 100, 660, 510));
+        setBounds(new java.awt.Rectangle(100, 100, 660, 540));
         setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        setMaximumSize(new java.awt.Dimension(660, 520));
-        setMinimumSize(new java.awt.Dimension(660, 520));
-        setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(660, 520));
+        setMaximumSize(new java.awt.Dimension(660, 540));
+        setMinimumSize(new java.awt.Dimension(660, 540));
+        setPreferredSize(new java.awt.Dimension(660, 540));
         setResizable(false);
-        setSize(new java.awt.Dimension(660, 520));
+        setSize(new java.awt.Dimension(660, 540));
         getContentPane().setLayout(null);
 
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -99,6 +116,11 @@ public class EditDisp extends javax.swing.JFrame {
         jTextField1.setText("Podaj hasło...");
         jTextField1.setEnabled(false);
         jTextField1.setMargin(new java.awt.Insets(2, 15, 2, 15));
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -230,11 +252,6 @@ public class EditDisp extends javax.swing.JFrame {
         jLabel4.setBounds(0, 0, 650, 510);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-        jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
         AdHocGloss.delete(entry.getName());
@@ -243,22 +260,27 @@ public class EditDisp extends javax.swing.JFrame {
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
         // TODO add your handling code here:
-        delete.setEnabled(true);
-        save.setEnabled(true);
-        jTextField1.setEnabled(true);
-        jTextPane1.setEnabled(true);
-        jRadioButton1.setEnabled(true);
-        jRadioButton2.setEnabled(true);
-        jRadioButton3.setEnabled(true);
-        jRadioButton4.setEnabled(true);
-        jRadioButton5.setEnabled(true);
+        enableFields(true);
     }//GEN-LAST:event_editActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
+        String newName = (String) jComboBox1.getSelectedItem();
+        if (newName.equals(AdHocGloss.getCurrent())){
+            if (AdHocGloss.getCurrent().equals("Dodaj nową listę..."))
+                AdHocGloss.addList(newName);
+            else
+                AdHocGloss.renameCurrentList(newName);           
+        }            
+                
         AdHocGloss.delete(entry.getName());
+        
         Date date = new Date();
+        
         entry = new Entry(jTextField1.getText(),selection, 0, date.getTime(), jTextPane1.getText());
+        
+        System.out.println(entry);
+        
         if (jComboBox1.getSelectedItem() != AdHocGloss.getCurrent())
             AdHocGloss.setCurrent((String) jComboBox1.getSelectedItem());
         AdHocGloss.pair(entry.getName(), Translator.encodeDef(entry));
@@ -266,9 +288,9 @@ public class EditDisp extends javax.swing.JFrame {
     }//GEN-LAST:event_saveActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:    
+        // TODO add your handling code here:
         AdHocGloss.setCurrent((String) jComboBox1.getSelectedItem());
-        jComboBox1.setEditable(true);    
+        jComboBox1.setEditable(true);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -298,9 +320,18 @@ public class EditDisp extends javax.swing.JFrame {
 
     private void jComboBox1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusLost
         // TODO add your handling code here:
-        AdHocGloss.renameCurrentList((String) jComboBox1.getSelectedItem());
-        setComboBox();
+       
     }//GEN-LAST:event_jComboBox1FocusLost
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        // TODO add your handling code here:
+        jTextField1.setText("");
+        
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     
 
@@ -334,7 +365,7 @@ public class EditDisp extends javax.swing.JFrame {
     } 
     
     
-    void display(Entry en){
+    private void display(Entry en){
         jTextField1.setText(en.getName());
         selection = en.getDiff();
         switch(selection){
@@ -360,15 +391,25 @@ public class EditDisp extends javax.swing.JFrame {
              
     }
     
-    void setComboBox(){
+    private void setComboBox(){
         DefaultComboBoxModel myModel = new DefaultComboBoxModel(AdHocGloss.listDir.toArray());
         myModel.addElement("Dodaj nową listę...");
         jComboBox1.setModel(myModel);
         jComboBox1.setSelectedItem(AdHocGloss.getCurrent());
     }
 
-    private void If(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void enableFields(boolean b){
+        delete.setEnabled(b);
+        save.setEnabled(b);
+        jComboBox1.setEnabled(b);
+        jTextField1.setEnabled(b);
+        jTextPane1.setEnabled(b);
+        jRadioButton1.setEnabled(b);
+        jRadioButton2.setEnabled(b);
+        jRadioButton3.setEnabled(b);
+        jRadioButton4.setEnabled(b);
+        jRadioButton5.setEnabled(b);
+        setComboBox();
     }
     
 

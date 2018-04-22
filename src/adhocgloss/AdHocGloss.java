@@ -31,7 +31,7 @@ public class AdHocGloss {
     public static ArrayList<String> listDir;
     private static String current = ""; //żadna lista nie jest wybrana
     
-    private static Properties currentList = null;
+    private static Properties currentList = new Properties();
     
     
     public static void main(String[] args) {
@@ -43,13 +43,14 @@ public class AdHocGloss {
     }
     
     
-    public static void pair(String name, String def){
+    public static void pair(String name, String def){        
         currentList.put(name, def);
+        System.out.println(currentList.toString());
         saveCurrentList();
     }
     
-    public boolean isKey(String key){
-        return currentList.containsKey(key);
+    public static boolean isEmpty(){
+        return currentList.isEmpty();
     }
     
     public static String getValue(String key){
@@ -88,7 +89,11 @@ public class AdHocGloss {
     }
     
     public static void delete(String key){
-        currentList.remove(key);
+        try{
+            currentList.remove(key);
+        } catch (NullPointerException e){
+            System.out.println("Nie usunięto");
+        }
     }
     
     public static void save(Entry ent){
@@ -97,6 +102,7 @@ public class AdHocGloss {
     
     public static void addList(String title){
         listDir.add(title);
+        current = title;        
     }
     
     public static void renameCurrentList(String newTitle){
@@ -146,7 +152,7 @@ public class AdHocGloss {
                 int i = fileName.lastIndexOf('.');
                 if (i > 0) {
                     extension = fileName.substring(i+1);
-                    fileName = fileName.substring(0,i-1);
+                    fileName = fileName.substring(0,i);
                 }                             
                 
                 if (extension.equals("txt" ) && !fileName.equals("")){
@@ -157,8 +163,9 @@ public class AdHocGloss {
         if (listDir.isEmpty()){           
             listDir = new ArrayList<>();
             listDir.add("Default");
-            current = "Default";
-            saveCurrentList();
+            current = "Default"; 
+            currentList = new Properties();
+            saveCurrentList();            
         }
 }
     
@@ -197,7 +204,6 @@ public class AdHocGloss {
         } catch (NullPointerException ex){
             System.out.println("out == null");
         }      
-        currentList = new Properties();
     }
     
     

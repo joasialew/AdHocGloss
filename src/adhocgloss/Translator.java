@@ -7,6 +7,7 @@ package adhocgloss;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -48,6 +49,19 @@ public class Translator{
         String def = String.valueOf(en.getDiff()) + String.valueOf(en.getLastAns()) + String.valueOf(en.getDateReg()) + "#" + en.getDef();
         return def;
     }
+    
+    public static String[] getKeys(){
+        String[] keyList = new String[AdHocGloss.getCurrentList().size()];
+        Enumeration<Object> enums = (Enumeration<Object>) AdHocGloss.getCurrentList().keys();
+        int it = 0;
+        while (enums.hasMoreElements()) {
+            keyList[it] = (String) enums.nextElement();
+        }
+        return keyList;
+    }
+    
+    
+    
         
     
     public static <K, V extends Comparable<V>> Map<K, V> sortByDiff(final Map<K, V> map) {
