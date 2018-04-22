@@ -33,7 +33,6 @@ public class EditDisp extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -55,17 +54,13 @@ public class EditDisp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ad Hoc Gloss");
-        setBounds(new java.awt.Rectangle(0, 0, 649, 502));
+        setBounds(new java.awt.Rectangle(0, 0, 655, 535));
         setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        setMaximumSize(new java.awt.Dimension(670, 505));
-        setMinimumSize(new java.awt.Dimension(670, 505));
-        setPreferredSize(new java.awt.Dimension(650, 502));
+        setMaximumSize(new java.awt.Dimension(655, 535));
+        setMinimumSize(new java.awt.Dimension(655, 535));
+        setPreferredSize(new java.awt.Dimension(655, 535));
         setResizable(false);
-        setSize(new java.awt.Dimension(670, 505));
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jLabel4, org.jdesktop.beansbinding.ObjectProperty.create(), this, org.jdesktop.beansbinding.BeanProperty.create("minimumSize"));
-        bindingGroup.addBinding(binding);
-
+        setSize(new java.awt.Dimension(660, 525));
         getContentPane().setLayout(null);
 
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -153,8 +148,6 @@ public class EditDisp extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 650, 500);
-
-        bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -182,7 +175,6 @@ public class EditDisp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
     

@@ -37,6 +37,10 @@ public class AdHocGloss {
         
         EditDisp b = new EditDisp();
         b.setVisible(true);
+        Quiz c = new Quiz();
+        c.setVisible(true);
+        Forms a = new Forms();
+        a.setVisible(true);
         readLists();
         Thread tg = new Thread(new GetterThread());
         tg.start();        

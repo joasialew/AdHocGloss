@@ -1,4 +1,4 @@
-
+package adhocgloss;
 import java.awt.Toolkit;
 
 
@@ -41,12 +41,12 @@ public class Quiz extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("QUIZ");
-        setBounds(new java.awt.Rectangle(0, 0, 500, 512));
+        setBounds(new java.awt.Rectangle(0, 0, 460, 512));
         setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
-        setMinimumSize(new java.awt.Dimension(500, 512));
-        setPreferredSize(new java.awt.Dimension(500, 512));
+        setMinimumSize(new java.awt.Dimension(460, 512));
+        setPreferredSize(new java.awt.Dimension(460, 512));
         setResizable(false);
-        setSize(new java.awt.Dimension(500, 512));
+        setSize(new java.awt.Dimension(460, 512));
         getContentPane().setLayout(null);
 
         buttonGroup1.add(jRadioButton1);
@@ -104,7 +104,7 @@ public class Quiz extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adhocgloss/back1.png"))); // NOI18N
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 500, 510);
+        jLabel5.setBounds(0, 0, 540, 510);
 
         jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);

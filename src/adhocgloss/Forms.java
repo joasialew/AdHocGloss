@@ -1,3 +1,4 @@
+package adhocgloss;
 
 import java.awt.Toolkit;
 import java.awt.event.*;
@@ -32,13 +33,12 @@ public class Forms extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ad Hoc Gloss");
-        setBounds(new java.awt.Rectangle(100, 100, 770, 565));
+        setBounds(new java.awt.Rectangle(100, 100, 770, 600));
         setFocusTraversalPolicyProvider(true);
         setFocusable(false);
-        setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
-        setMinimumSize(new java.awt.Dimension(770, 565));
+        setMinimumSize(new java.awt.Dimension(770, 600));
         setName("Ad Hoc Gloss"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(770, 565));
+        setPreferredSize(new java.awt.Dimension(770, 600));
         setResizable(false);
         getContentPane().setLayout(null);
 
