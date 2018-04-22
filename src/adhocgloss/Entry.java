@@ -14,7 +14,7 @@ public class Entry {
     private String word;   //słówko
     private String def;    //definicja słówka
     private int diff;    //wartość słówka
-    private int lastAns;
+    private int lastAns;    //ostatnio udzielona odpowiedź w quiz'ie
     private long dateReg;    //data dodania słówka
     
     public Entry(String word, int difficulty, int lastA, long dateReg, String definition){

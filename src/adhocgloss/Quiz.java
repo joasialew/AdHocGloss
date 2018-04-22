@@ -126,70 +126,54 @@ public class Quiz extends javax.swing.JFrame
     
     int[] tabLicz={0,0,0,0,0};
     
+    public int generateRandomAnswer()
+    {
+        int RandAns=((((int)(Math.random()*30))%9)%7)%5-2;
+        if(tabLicz[RandAns]==0)
+        {
+            generateRandomAnswer();
+        }
+        return RandAns;        
+    }
+    
+    public String generateRandomWord(int slowo, int randomAnswer )
+    {
+        int it = 0;
+        for(Map.Entry<String,String> entry : Quiz.entrySet()) 
+        {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            char c = value.charAt(1);
+            if(c == randomAnswer)
+            {
+                it++;
+                if(it == slowo)
+                {
+                   return key;
+                }
+            }
+        }   
+    return "xD";       
+    }
+    
+    public String giveRandomWord()
+    {
+        int RandomAnswer=this.generateRandomAnswer();
+        return generateRandomWord((int)(tabLicz[RandomAnswer+2]*Math.random()+1),RandomAnswer);
+    }
+    
+    
+    
     public long changeTotalCount(Entry e, int answer)
-    //(-2)-(2) Totalnie nie umiem-Umiem perfekcyjnie
+    //przedzial answer:(-2)-(2) Totalnie nie umiem-Umiem perfekcyjnie
     {   
         tabLicz[e.getLastAns()+2]--;
         tabLicz[answer+2]++;
         //liczność jednego zmniejszamy o 1, drugiego zwiększamy o 1
         e.setLastAns(answer);
         rank+=2*(answer-1)+e.getDifficulty()-1;
-        return rank;
-        
-    }
-    
-    public int generateRandomAnswer()
-    {
-        double losowa=Math.random();
-        int szukanaLastAnswer;
-        if(losowa>=0.6)
-        {
-            szukanaLastAnswer=-2;
-        }
-        else if(losowa>=0.32)
-        {
-            szukanaLastAnswer=-1;
-        }
-        else if(losowa>=0.12)
-        {
-            szukanaLastAnswer=0;
-        }
-        else if(losowa>=0.04)
-        {
-            szukanaLastAnswer=1;
-        }
-        else
-        {
-            szukanaLastAnswer=2;
-        }
-        return szukanaLastAnswer;
-    }
-    
-    public String generateRandomWord()
-    {
-        int RandomAnswer=this.generateRandomAnswer();
-        int slowo=(int)(tabLicz[RandomAnswer+2]*Math.random()+1);
-        return GimmeWord(slowo,RandomAnswer);
-    }
-   
-    public String GimmeWord(int slowo, int randomAnswer )
-    {
-        int it = 0;
-        for(Map.Entry<String,String> entry : Quiz.entrySet()) {
-          String key = entry.getKey();
-          String value = entry.getValue();
-          char c = value.charAt(1);
-          if(c == randomAnswer){
-              it++;
-              if(it == slowo){
-                  return key;
-              }
-          }
-        }   
-     return "xD";
-       
-    }
-    
+        return rank;        
+    }                           
 }
 
 
