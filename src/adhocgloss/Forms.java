@@ -16,8 +16,10 @@ public class Forms extends javax.swing.JFrame {
     public Forms() {
         initComponents();
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
-        this.setResizable(true);
+        this.setResizable(false);
         this.setDefaultCloseOperation(3);
+        
+        displayLists(AdHocGloss.listDir);
     }
 
    
@@ -40,26 +42,27 @@ public class Forms extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ad Hoc Gloss");
-        setBounds(new java.awt.Rectangle(100, 100, 770, 565));
+        setBounds(new java.awt.Rectangle(100, 100, 765, 600));
         setFocusTraversalPolicyProvider(true);
         setFocusable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
-        setMinimumSize(new java.awt.Dimension(770, 565));
+        setMaximumSize(new java.awt.Dimension(765, 600));
+        setMinimumSize(new java.awt.Dimension(765, 600));
         setName("Ad Hoc Gloss"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(770, 565));
+        setPreferredSize(new java.awt.Dimension(765, 600));
         setResizable(false);
-        setSize(new java.awt.Dimension(770, 565));
+        setSize(new java.awt.Dimension(765, 600));
         getContentPane().setLayout(null);
 
         newEntry.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        newEntry.setText("NOWY WPIS");
+        newEntry.setText("NOWY");
         newEntry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newEntryActionPerformed(evt);
             }
         });
         getContentPane().add(newEntry);
-        newEntry.setBounds(30, 20, 139, 40);
+        newEntry.setBounds(30, 20, 89, 40);
 
         quiz.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         quiz.setText("QUIZ");
@@ -94,9 +97,9 @@ public class Forms extends javax.swing.JFrame {
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField1.setText("...");
         jTextField1.setMargin(new java.awt.Insets(2, 20, 2, 20));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
             }
         });
         getContentPane().add(jTextField1);
@@ -156,23 +159,18 @@ public class Forms extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adhocgloss/back1.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 760, 550);
+        jLabel2.setBounds(0, 0, 760, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void newEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEntryActionPerformed
-        new Wpis().setVisible(true);
+        new EditDisp(new Entry()).setVisible(true);
     }//GEN-LAST:event_newEntryActionPerformed
 
     private void quizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quizActionPerformed
         new Quiz().setVisible(true);
     }//GEN-LAST:event_quizActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-        jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
@@ -218,6 +216,11 @@ public class Forms extends javax.swing.JFrame {
             new EditDisp(Translator.decode(jList1.getSelectedValue()));
         }
     }//GEN-LAST:event_jList1ValueChanged
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        // TODO add your handling code here:
+         jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
 
     
     public static void main(String args[]) {
@@ -270,9 +273,7 @@ public class Forms extends javax.swing.JFrame {
     
     
     
-    void selectEntry(){
-        new EditDisp().setVisible(true);
-    }
+    
 
     private void displayCurrentList() {
         DefaultListModel<String> listKeys = new DefaultListModel<>();

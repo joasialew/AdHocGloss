@@ -144,11 +144,10 @@ public class AdHocGloss {
             if (file.isFile()) {
                 fileName = file.getName();
                 int i = fileName.lastIndexOf('.');
-                if (i >= 0) {
+                if (i > 0) {
                     extension = fileName.substring(i+1);
-                }
-                
-                fileName = fileName.substring(0,i-1);
+                    fileName = fileName.substring(0,i-1);
+                }                             
                 
                 if (extension.equals("txt" ) && !fileName.equals("")){
                     listDir.add(fileName);
@@ -158,8 +157,8 @@ public class AdHocGloss {
         if (listDir.isEmpty()){           
             listDir = new ArrayList<>();
             listDir.add("Default");
-            saveCurrentList();
             current = "Default";
+            saveCurrentList();
         }
 }
     
@@ -195,7 +194,9 @@ public class AdHocGloss {
         } catch (IOException ex) {
             Logger.getLogger(AdHocGloss.class.getName()).log(Level.SEVERE, null, ex);           
             System.out.println("Problem z zapisywaniem pliku!");
-        }       
+        } catch (NullPointerException ex){
+            System.out.println("out == null");
+        }      
         currentList = new Properties();
     }
     

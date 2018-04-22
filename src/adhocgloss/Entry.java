@@ -17,6 +17,16 @@ public class Entry {
     private int lastAns;
     private long dateReg;    //data dodania słówka
     
+    
+    
+    public Entry(){
+        this.word = "";
+        this.def = "";
+        this.diff = 3;
+        this.lastAns = 0;
+        this.dateReg = 0;     
+    }
+    
     public Entry(String word, int difficulty, int lastA, long dateReg, String definition){
         this.word = word;
         this.def = definition;

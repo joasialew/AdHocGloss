@@ -34,14 +34,6 @@ public class EditDisp extends javax.swing.JFrame {
         display(entry);
     }
     
-    
-    
-    public EditDisp() {
-        initComponents();
-        setIconImage(Toolkit.getDefaultToolkit().getImage("rysunek.png"));
-        setResizable(false);        
-        display(entry);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,7 +64,7 @@ public class EditDisp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ad Hoc Gloss");
-        setBounds(new java.awt.Rectangle(0, 0, 660, 510));
+        setBounds(new java.awt.Rectangle(100, 100, 660, 510));
         setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         setMaximumSize(new java.awt.Dimension(660, 520));
         setMinimumSize(new java.awt.Dimension(660, 520));
@@ -337,9 +329,9 @@ public class EditDisp extends javax.swing.JFrame {
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(() -> {
-            new EditDisp().setVisible(true);
+            new EditDisp(new Entry()).setVisible(true);
         });
-    }
+    } 
     
     
     void display(Entry en){
